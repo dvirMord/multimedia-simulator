@@ -6,5 +6,6 @@
         public bool StopStream(string streamId);
         public bool IsStreamRunning(string streamId);
         public List<string> GetRunningStreams();
+        public void KillAllRunningStreams();
     }
 }

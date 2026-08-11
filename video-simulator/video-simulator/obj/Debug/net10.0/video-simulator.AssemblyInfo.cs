@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("video-simulator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef01d58819442374b83e4b316f5cb9bce2d211ce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31ee47845c07d46620466e029a63e0420f8ba157")]
 [assembly: System.Reflection.AssemblyProductAttribute("video-simulator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("video-simulator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

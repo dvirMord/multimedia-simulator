@@ -1,4 +1,4 @@
-using video_simulator.constans;
+﻿using video_simulator.constans;
 using video_simulator.MediaMTX;
 using video_simulator.Services;
 using VideoSimulator.Services;
@@ -10,9 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 //DI 
-builder.Services.AddSingleton<IVideoSimulatorService, VideoSimulatorService>();
-builder.Services.AddSingleton<IStorageService, LocalStorageService>();
-builder.Services.AddSingleton<IFfmpegManager, FfmpegManager>();
+builder.Services.AddScoped<IVideoSimulatorService, VideoSimulatorService>();
+builder.Services.AddScoped<IStorageService, LocalStorageService>();
+builder.Services.AddScoped<IFfmpegManager, FfmpegManager>();
 
 //create mediaMtx server and start it
 var app = builder.Build();
@@ -21,7 +21,7 @@ var mediaMtxPath = Environment.GetEnvironmentVariable(EnvConstants.mediaMTXPathN
                     ?? throw new InvalidOperationException("MediaMTX path is not configured.");
 var ffmpegManager = app.Services.GetRequiredService<IFfmpegManager>();
 
-MediaMtxServer mediaMtxServer = new MediaMtxServer(mediaMtxPath);
+MediaMtxServer mediaMtxServer = new MediaMtxServer(mediaMtxPath, ffmpegManager);
 await mediaMtxServer.StartAsync(rtspPort: 8554);
 
 
@@ -40,7 +40,6 @@ lifetime.ApplicationStopping.Register(() =>
 {
     Console.WriteLine("Graceful shutdown initiated (ApplicationStopping)...");
     mediaMtxServer.Stop();
-    ffmpegManager.KillAllRunningStreams();
 });
 
 app.Run();

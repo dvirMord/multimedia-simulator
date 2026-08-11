@@ -3,12 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\services\\storageservice\\localstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\services\\storageservice\\localstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\mediamtx\\mediamtx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\mediamtx\\mediamtx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\ffmpeg\\ffmpegmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\ffmpeg\\ffmpegmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\ffmpeg\\iffmpegmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\ffmpeg\\iffmpegmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\constans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\constans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\services\\videosimulatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\services\\videosimulatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\services\\storageservice\\localstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\services\\storageservice\\localstorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\services\\storageservice\\istorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\services\\storageservice\\istorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\services\\ivideosimulatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\services\\ivideosimulatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\controllers\\vidoesimolatorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\controllers\\vidoesimolatorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\validaters\\validators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,36 +55,8 @@
       "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\dtos\\soredfileresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\services\\videosimulatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\services\\videosimulatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\ffmpeg\\iffmpegmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\ffmpeg\\iffmpegmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\services\\ivideosimulatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\services\\ivideosimulatorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\controllers\\vidoesimolatorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\controllers\\vidoesimolatorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\dtos\\streamrequests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\dtos\\streamrequests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\services\\storageservice\\istorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\services\\storageservice\\istorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\constans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\constans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\video-simulator.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -61,14 +69,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\dtos\\streamresponses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\dtos\\streamresponses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|c:\\users\\dvirm\\documents\\projects\\raven\\multimedia-simulator\\video-simulator\\video-simulator\\mediamtx\\mediamtx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A80B60F-4D56-FE7E-67DB-58F8CF8CF929}|video-simulator\\video-simulator.csproj|solutionrelative:video-simulator\\mediamtx\\mediamtx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -82,28 +82,41 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Validators.cs",
-              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Validaters\\Validators.cs",
-              "RelativeDocumentMoniker": "video-simulator\\Validaters\\Validators.cs",
-              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Validaters\\Validators.cs",
-              "RelativeToolTip": "video-simulator\\Validaters\\Validators.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Program.cs",
+              "RelativeDocumentMoniker": "video-simulator\\Program.cs",
+              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Program.cs",
+              "RelativeToolTip": "video-simulator\\Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAASwBAAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-11T12:53:20.829Z",
+              "WhenOpened": "2026-08-10T12:43:00.38Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "IFfmpegManager.cs",
               "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Ffmpeg\\IFfmpegManager.cs",
               "RelativeDocumentMoniker": "video-simulator\\Ffmpeg\\IFfmpegManager.cs",
               "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Ffmpeg\\IFfmpegManager.cs",
               "RelativeToolTip": "video-simulator\\Ffmpeg\\IFfmpegManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-11T11:52:58.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IVideoSimulatorService.cs",
+              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\IVideoSimulatorService.cs",
+              "RelativeDocumentMoniker": "video-simulator\\Services\\IVideoSimulatorService.cs",
+              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\IVideoSimulatorService.cs",
+              "RelativeToolTip": "video-simulator\\Services\\IVideoSimulatorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-10T12:34:51.552Z",
               "EditorCaption": ""
             },
             {
@@ -114,118 +127,27 @@
               "RelativeDocumentMoniker": "video-simulator\\Ffmpeg\\FfmpegManager.cs",
               "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Ffmpeg\\FfmpegManager.cs",
               "RelativeToolTip": "video-simulator\\Ffmpeg\\FfmpegManager.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAqwIIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-11T08:28:22.15Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "VideoSimulatorService.cs",
-              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\VideoSimulatorService.cs",
-              "RelativeDocumentMoniker": "video-simulator\\Services\\VideoSimulatorService.cs",
-              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\VideoSimulatorService.cs",
-              "RelativeToolTip": "video-simulator\\Services\\VideoSimulatorService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAA6wB8AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-10T12:35:28.165Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LocalStorageService.cs",
-              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\StorageService\\LocalStorageService.cs",
-              "RelativeDocumentMoniker": "video-simulator\\Services\\StorageService\\LocalStorageService.cs",
-              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\StorageService\\LocalStorageService.cs",
-              "RelativeToolTip": "video-simulator\\Services\\StorageService\\LocalStorageService.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAYwBQAAAAJAAAAAAAAAA==",
+              "Title": "MediaMTX.cs",
+              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\MediaMTX\\MediaMTX.cs",
+              "RelativeDocumentMoniker": "video-simulator\\MediaMTX\\MediaMTX.cs",
+              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\MediaMTX\\MediaMTX.cs",
+              "RelativeToolTip": "video-simulator\\MediaMTX\\MediaMTX.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAADwv1kAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-11T08:22:03.735Z",
+              "WhenOpened": "2026-08-11T05:38:43.051Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SoredFileResult.cs",
-              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\DTOs\\SoredFileResult.cs",
-              "RelativeDocumentMoniker": "video-simulator\\DTOs\\SoredFileResult.cs",
-              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\DTOs\\SoredFileResult.cs",
-              "RelativeToolTip": "video-simulator\\DTOs\\SoredFileResult.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-11T08:12:27.2Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IVideoSimulatorService.cs",
-              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\IVideoSimulatorService.cs",
-              "RelativeDocumentMoniker": "video-simulator\\Services\\IVideoSimulatorService.cs",
-              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\IVideoSimulatorService.cs",
-              "RelativeToolTip": "video-simulator\\Services\\IVideoSimulatorService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-10T12:34:51.552Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "VidoeSimolatorController.cs",
-              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Controllers\\VidoeSimolatorController.cs",
-              "RelativeDocumentMoniker": "video-simulator\\Controllers\\VidoeSimolatorController.cs",
-              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Controllers\\VidoeSimolatorController.cs",
-              "RelativeToolTip": "video-simulator\\Controllers\\VidoeSimolatorController.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAIwDcAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-10T12:11:41.983Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "StreamRequests.cs",
-              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\DTOs\\StreamRequests.cs",
-              "RelativeDocumentMoniker": "video-simulator\\DTOs\\StreamRequests.cs",
-              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\DTOs\\StreamRequests.cs",
-              "RelativeToolTip": "video-simulator\\DTOs\\StreamRequests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-10T16:26:00.628Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "video-simulator",
-              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\video-simulator.csproj",
-              "RelativeDocumentMoniker": "video-simulator\\video-simulator.csproj",
-              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\video-simulator.csproj",
-              "RelativeToolTip": "video-simulator\\video-simulator.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-08-11T11:48:33.812Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": ".env",
-              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\.env",
-              "RelativeDocumentMoniker": "video-simulator\\.env",
-              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\.env",
-              "RelativeToolTip": "video-simulator\\.env",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAABjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-08-10T16:38:43.553Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 4,
               "Title": "constans.cs",
               "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\constans.cs",
               "RelativeDocumentMoniker": "video-simulator\\constans.cs",
@@ -238,20 +160,118 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
+              "Title": "VideoSimulatorService.cs",
+              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\VideoSimulatorService.cs",
+              "RelativeDocumentMoniker": "video-simulator\\Services\\VideoSimulatorService.cs",
+              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\VideoSimulatorService.cs",
+              "RelativeToolTip": "video-simulator\\Services\\VideoSimulatorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-10T12:35:28.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LocalStorageService.cs",
+              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\StorageService\\LocalStorageService.cs",
+              "RelativeDocumentMoniker": "video-simulator\\Services\\StorageService\\LocalStorageService.cs",
+              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\StorageService\\LocalStorageService.cs",
+              "RelativeToolTip": "video-simulator\\Services\\StorageService\\LocalStorageService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T08:22:03.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "IStorageService.cs",
               "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\StorageService\\IStorageService.cs",
               "RelativeDocumentMoniker": "video-simulator\\Services\\StorageService\\IStorageService.cs",
               "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Services\\StorageService\\IStorageService.cs",
               "RelativeToolTip": "video-simulator\\Services\\StorageService\\IStorageService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAABUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-11T08:16:30.252Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\.env",
+              "RelativeDocumentMoniker": "video-simulator\\.env",
+              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\.env",
+              "RelativeToolTip": "video-simulator\\.env",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-08-10T16:38:43.553Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "VidoeSimolatorController.cs",
+              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Controllers\\VidoeSimolatorController.cs",
+              "RelativeDocumentMoniker": "video-simulator\\Controllers\\VidoeSimolatorController.cs",
+              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Controllers\\VidoeSimolatorController.cs",
+              "RelativeToolTip": "video-simulator\\Controllers\\VidoeSimolatorController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-10T12:11:41.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "SoredFileResult.cs",
+              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\DTOs\\SoredFileResult.cs",
+              "RelativeDocumentMoniker": "video-simulator\\DTOs\\SoredFileResult.cs",
+              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\DTOs\\SoredFileResult.cs",
+              "RelativeToolTip": "video-simulator\\DTOs\\SoredFileResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T08:12:27.2Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Validators.cs",
+              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Validaters\\Validators.cs",
+              "RelativeDocumentMoniker": "video-simulator\\Validaters\\Validators.cs",
+              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Validaters\\Validators.cs",
+              "RelativeToolTip": "video-simulator\\Validaters\\Validators.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-11T12:53:20.829Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 13,
+              "Title": "StreamRequests.cs",
+              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\DTOs\\StreamRequests.cs",
+              "RelativeDocumentMoniker": "video-simulator\\DTOs\\StreamRequests.cs",
+              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\DTOs\\StreamRequests.cs",
+              "RelativeToolTip": "video-simulator\\DTOs\\StreamRequests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-10T16:26:00.628Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "video-simulator.csproj",
+              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\video-simulator.csproj",
+              "RelativeDocumentMoniker": "video-simulator\\video-simulator.csproj",
+              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\video-simulator.csproj",
+              "RelativeToolTip": "video-simulator\\video-simulator.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-11T11:48:33.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "video-simulator\\Properties\\launchSettings.json",
@@ -259,12 +279,11 @@
               "RelativeToolTip": "video-simulator\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-08-10T12:45:48.57Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-10T12:45:48.57Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "StreamResponses.cs",
               "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\DTOs\\StreamResponses.cs",
               "RelativeDocumentMoniker": "video-simulator\\DTOs\\StreamResponses.cs",
@@ -272,33 +291,7 @@
               "RelativeToolTip": "video-simulator\\DTOs\\StreamResponses.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-10T16:26:17.726Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Program.cs",
-              "RelativeDocumentMoniker": "video-simulator\\Program.cs",
-              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\Program.cs",
-              "RelativeToolTip": "video-simulator\\Program.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAMwAwAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-10T12:43:00.38Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "MediaMTX.cs",
-              "DocumentMoniker": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\MediaMTX\\MediaMTX.cs",
-              "RelativeDocumentMoniker": "video-simulator\\MediaMTX\\MediaMTX.cs",
-              "ToolTip": "C:\\Users\\dvirm\\Documents\\Projects\\Raven\\multimedia-simulator\\video-simulator\\video-simulator\\MediaMTX\\MediaMTX.cs",
-              "RelativeToolTip": "video-simulator\\MediaMTX\\MediaMTX.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAA1wCEAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-11T05:38:43.051Z"
+              "WhenOpened": "2026-08-10T16:26:17.726Z"
             }
           ]
         }

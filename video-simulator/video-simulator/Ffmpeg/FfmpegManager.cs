@@ -11,11 +11,10 @@ namespace video_simulator.Services
     {
         private readonly ConcurrentDictionary<string, Process> _runningStreams;
         private readonly string _ffmpegPath;
-        private readonly MediaMtxServer _mediaMtxServer;
         private readonly string _storagePath;
 
         //-----------------constructor-----------------
-        private FfmpegManager()
+        public FfmpegManager()
         {
             this._runningStreams = new ConcurrentDictionary<string, Process>();
 
@@ -25,9 +24,6 @@ namespace video_simulator.Services
 
             this._storagePath = Environment.GetEnvironmentVariable(EnvConstants.tsFilesStorageName)
                 ?? throw new InvalidOperationException("TS files storage path is not configured.");
-
-            this._mediaMtxServer = new MediaMtxServer(Environment.GetEnvironmentVariable(EnvConstants.mediaMTXPathName)
-                    ?? throw new InvalidOperationException("MediaMTX path is not configured."));
         }
 
         //-----------------interface functions-----------------
@@ -51,12 +47,15 @@ namespace video_simulator.Services
                 streamId);
 
             string args =
-                $"-re -stream_loop -1 " +
-                $"-i \"{fullPath}\" " +
-                $"-map 0:v:0 " +
-                $"-c:v copy " +
-                $"-f rtsp " +
-                $"rtsp://localhost:8554/{streamId}";
+                 $"-re " +                                      // Read input at native frame rate
+                 $"-stream_loop -1 " +                          // Infinite loop
+                 $"-i \"{fullPath}\" " +
+                 $"-map 0:v:0 " +
+                 $"-c:v copy " +
+                 $"-f rtsp " +
+                 $"-rtsp_transport tcp " +                      // FORCE TCP to prevent dropped packets
+                 $"-muxdelay 0.1 " +                            // Reduce stream latency
+                 $"rtsp://localhost:8554/{streamId}";
 
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
@@ -144,27 +143,13 @@ namespace video_simulator.Services
             return this._runningStreams.Keys.ToList();
         }
 
-        //-----------------create and clean--------------
-
-        public static async Task<FfmpegManager> CreateAsnc(
-            string rtspBaseUrl = "rtsp://127.0.0.1:8554")
-        {
-            FfmpegManager manager = new FfmpegManager();
-
-            await manager._mediaMtxServer.StartAsync(
-                rtspPort: 8554);
-
-            return manager;
-        }
-
-        public void cleanUpPorcesss()
+        //-----------------create and clean-------------
+        public void KillAllRunningStreams()
         {
             foreach (string streamId in this._runningStreams.Keys.ToList())
             {
                 this.StopStream(streamId);
             }
-
-            this._mediaMtxServer.Stop();
         }
     }
 }
