@@ -1,0 +1,66 @@
+[
+  {
+    "ContainingType": "video_simulator.Controllers.VideoSimulatorController",
+    "Method": "UploadFile",
+    "RelativePath": "api/vs/files",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "video_simulator.Controllers.VideoSimulatorController",
+    "Method": "DeleteFile",
+    "RelativePath": "api/vs/files/{fileName}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "video_simulator.Controllers.VideoSimulatorController",
+    "Method": "StartStream",
+    "RelativePath": "api/vs/stream/start",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "video_simulator.DTOs.StartStreamRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "video_simulator.Controllers.VideoSimulatorController",
+    "Method": "StopStream",
+    "RelativePath": "api/vs/stream/stop",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "video_simulator.DTOs.StopStreamRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
