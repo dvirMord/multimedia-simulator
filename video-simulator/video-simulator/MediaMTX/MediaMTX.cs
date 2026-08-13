@@ -50,6 +50,11 @@ namespace video_simulator.MediaMTX
             {
                 if (!string.IsNullOrWhiteSpace(e.Data))
                 {
+                    if (e.Data.Contains("[RTSP]") || e.Data.Contains("RTP packets are too big"))
+                    {
+                        return;
+                    }
+
                     _logger.LogInformation(MediaMtxServerMessages.Output.OutputTemplate, e.Data);
                 }
             };

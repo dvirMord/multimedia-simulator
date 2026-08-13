@@ -47,3 +47,6 @@ lifetime.ApplicationStopping.Register(() =>
 });
 
 app.Run();
+
+Console.Write("Press any key to exit...");
+Console.Read();

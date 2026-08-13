@@ -4,9 +4,9 @@
     {
         //files
         Task<bool> ReceiveFileAsync(IFormFile file);
-        bool DeleteFile(string fileName);
+        Task<bool> DeleteFileAsync(string fileName);
         //streams
-        void StartRtspStream(string fileName);
-        void StopRtspStream(string streamName);
+        Task StartRtspStreamAsync(string fileName);
+        Task StopRtspStreamAsync(string streamName);
     }
 }

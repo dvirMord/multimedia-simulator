@@ -22,20 +22,26 @@ namespace video_simulator.Services
             return true;
         }
 
-        public bool DeleteFile(string fileName)
+        public async Task<bool> DeleteFileAsync(string fileName)
         {
+            //check if stream is running and stop it before deleting the file
+            if (this._ffmpegService.IsStreamRunning(fileName))
+            {
+                await this._ffmpegService.StopStreamAsync(fileName);
+            }
+            
             this._storageManagementService.DeleteFile(fileName); 
             return true;
         }
 
         //streams
-        public void StartRtspStream(string fileName)
+        public async Task StartRtspStreamAsync(string fileName)
         {
-            this._ffmpegService.StartStream(fileName);
+            await this._ffmpegService.StartStreamAsync(fileName);
         }
-        public void StopRtspStream(string streamName)
+        public async Task StopRtspStreamAsync(string streamName)
         {
-            this._ffmpegService.StopStream(streamName);
+            await this._ffmpegService.StopStreamAsync(streamName);
         }
     }
 

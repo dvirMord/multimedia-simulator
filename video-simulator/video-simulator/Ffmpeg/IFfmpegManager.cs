@@ -2,10 +2,10 @@
 {
     public interface IFFmpegManager
     {
-        public void StartStream(string streamId);
-        public void StopStream(string streamId);
+        public Task StartStreamAsync(string streamId);
+        public Task StopStreamAsync(string streamId);
         public bool IsStreamRunning(string streamId);
         public List<string> GetRunningStreams();
-        public void KillAllRunningStreams();
+        public Task KillAllRunningStreams();
     }
 }

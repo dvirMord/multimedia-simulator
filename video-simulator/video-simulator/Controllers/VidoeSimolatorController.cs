@@ -10,16 +10,20 @@ namespace video_simulator.Controllers
     public class VideoSimulatorController : ControllerBase
     {
         private readonly IVideoSimulatorService _videoSimulatorService;
+        private readonly ILogger<VideoSimulatorController> _logger;
 
-        public VideoSimulatorController(IVideoSimulatorService videoSimulatorService)
+        public VideoSimulatorController(IVideoSimulatorService videoSimulatorService,
+            ILogger<VideoSimulatorController> logger)
         {
-            _videoSimulatorService = videoSimulatorService;
+            this._videoSimulatorService = videoSimulatorService;
+            this._logger = logger;
         }
 
         [HttpPost("files")]
         [RequestSizeLimit(Constants.TRANSMITTED_FILE_SIZE)]
-        public async Task<IActionResult> ReceiveFile(IFormFile file)
+        public async Task<IActionResult> ReceiveFileAsync(IFormFile file)
         {
+            this._logger.LogInformation(FilesLoggerMessages.ReciveFilelog, file.FileName);
             try
             {
                 bool result = await _videoSimulatorService.ReceiveFileAsync(file);
@@ -41,15 +45,16 @@ namespace video_simulator.Controllers
 
 
         [HttpDelete("files")]
-        public IActionResult DeleteFile([FromBody]  string fileName)
+        public async Task<IActionResult> DeleteFileAsync([FromBody]  DTOs.DeleteFileDTO requset)
         {
+            this._logger.LogInformation(FilesLoggerMessages.DeleteFile, requset.FileName);
             try
             {
-                bool result = _videoSimulatorService.DeleteFile(fileName);
+                bool result = await _videoSimulatorService.DeleteFileAsync(requset.FileName);
                 return Ok(new 
                 {
                     success = result, 
-                    message = string.Format(FilesControllerMessages.Success.DeleteSuccessTemplate, fileName)
+                    message = string.Format(FilesControllerMessages.Success.DeleteSuccessTemplate, requset.FileName)
                 });
             }
             catch (Exception ex)
@@ -57,18 +62,18 @@ namespace video_simulator.Controllers
                 return BadRequest(new 
                 { 
                     success = false, 
-                    message = string.Format(FilesControllerMessages.Error.FileDeleteFailedTemplate, fileName, ex.Message)   
+                    message = string.Format(FilesControllerMessages.Error.FileDeleteFailedTemplate, requset.FileName, ex.Message)   
                 });
             }
         }
 
         //-------------------- APIs for streams-----------------
         [HttpPost("stream/start")]
-        public IActionResult StartStream([FromBody] DTOs.StartStreamDTO request)
+        public async Task<IActionResult> StartStreamAsync([FromBody] DTOs.StartStreamDTO request)
         {
             try
             {
-                _videoSimulatorService.StartRtspStream(request.FileName);
+                await _videoSimulatorService.StartRtspStreamAsync(request.FileName);
                 return Ok(new 
                 {
                     success = true,
@@ -88,11 +93,11 @@ namespace video_simulator.Controllers
 
             
         [HttpPost("stream/stop")]
-        public IActionResult StopStream([FromBody] DTOs.StopStreamDTO request)
+        public async Task<IActionResult> StopRtspStreamAsync([FromBody] DTOs.StopStreamDTO request)
         {
             try
             {
-                _videoSimulatorService.StopRtspStream(request.StreamName);
+                await _videoSimulatorService.StopRtspStreamAsync(request.StreamName);
                 return Ok(new 
                 {
                     success = true,

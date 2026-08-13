@@ -14,5 +14,11 @@
             public const string FFmpegErrorOutputTemplate = "FFmpeg Error Output:\n{0}";
             public const string FailedToStartStreamTemplate = "Failed to start stream: {0}";
         }
+        public static class Warning
+        {
+            public const string FFmpegStreamCloseTimeoutTemplate = "Process for stream {0} took too long to exit.";
+
+
+        }
     }
 }

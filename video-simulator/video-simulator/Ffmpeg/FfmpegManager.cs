@@ -30,7 +30,7 @@ namespace video_simulator.Services
 
         //-----------------interface functions-----------------
 
-        public void StartStream(string streamId)
+        public async Task StartStreamAsync(string streamId)
         {
             MyValidators.ValidateNotNullOrEmpty(streamId);
             MyValidators.ValidateFileExtension(streamId);
@@ -68,16 +68,18 @@ namespace video_simulator.Services
             {
                 Process process = new Process
                 {
-                    StartInfo = startInfo
+                    StartInfo = startInfo,
+                    EnableRaisingEvents = true
                 };
 
                 process.Start();
+                process.BeginErrorReadLine();
 
-                Thread.Sleep(Constants.FFMPEG_STARTUP_CHECK_MILLISECONDS);
+                await Task.Delay(Constants.FFMPEG_STARTUP_CHECK_MILLISECONDS);
 
                 if (process.HasExited)
                 {
-                    string errorLog = process.StandardError.ReadToEnd();
+                    string errorLog = await process.StandardError.ReadToEndAsync();
 
                     _logger.LogError(FFmpegManagerMessages.Error.ProcessCrashedImmediately);
                     _logger.LogError(FFmpegManagerMessages.Error.FFmpegErrorOutputTemplate, errorLog);
@@ -99,18 +101,22 @@ namespace video_simulator.Services
             }
         }
 
-        public void StopStream(string streamId)
+        public async Task StopStreamAsync(string streamId)
         {
             MyValidators.ValidateNotNullOrEmpty(streamId);
 
             if (!this._runningStreams.TryGetValue(streamId, out Process? process))
             {
-               throw new ArgumentException(string.Format(FFmpegExceptions.StreamNotRunningTemplate, streamId));
+                throw new ArgumentException(string.Format(FFmpegExceptions.StreamNotRunningTemplate, streamId));
             }
 
             _logger.LogInformation(FFmpegManagerMessages.Success.StreamStoppedTemplate, streamId);
 
-            process.Kill();
+            if (!process.HasExited)
+            {
+                process.Kill(true);
+                await process.WaitForExitAsync();
+            }
 
             this._runningStreams.TryRemove(streamId, out _);
 
@@ -130,11 +136,11 @@ namespace video_simulator.Services
         }
 
         //-----------------create and clean-------------
-        public void KillAllRunningStreams()
+        public async Task KillAllRunningStreams()
         {
             foreach (string streamId in this._runningStreams.Keys.ToList())
             {
-                this.StopStream(streamId);
+                await this.StopStreamAsync(streamId);
             }
         }
     }
