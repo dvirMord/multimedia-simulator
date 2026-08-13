@@ -1,4 +1,5 @@
 ﻿using video_simulator.constans;
+
 namespace video_simulator.Validators
 {
     public static class MyValidators
@@ -9,12 +10,12 @@ namespace video_simulator.Validators
 
             if (obj is string str && string.IsNullOrEmpty(str))
             {
-                throw new ArgumentException("Value is empty.");
+                throw new ArgumentException(ValidatorsExceptions.ValueIsEmpty);
             }
 
             if (obj is IFormFile file && file.Length == 0)
             {
-                throw new ArgumentException("File length is empty.");
+                throw new ArgumentException(ValidatorsExceptions.FileIsEmpty);
             }
         }
 
@@ -29,7 +30,7 @@ namespace video_simulator.Validators
             if (!File.Exists(fullPath))
             {
                 throw new FileNotFoundException(
-                    $"File not found: {fileName}");
+                    string.Format(ValidatorsExceptions.FileNotFoundTemplate, fileName));
             }
         }
 
@@ -41,7 +42,7 @@ namespace video_simulator.Validators
             if (extension != Constants.TS_FILE_EXTENSION)
             {
                 throw new InvalidOperationException(
-                    "Only .ts media files are supported.");
+                    ValidatorsExceptions.OnlyTsFilesSupported);
             }
         }
 
@@ -56,7 +57,7 @@ namespace video_simulator.Validators
             if (File.Exists(fullPath))
             {
                 throw new ArgumentException(
-                    "File is already uploaded.",
+                    ValidatorsExceptions.FileAlreadyUploaded,
                     nameof(fileName));
             }
         }

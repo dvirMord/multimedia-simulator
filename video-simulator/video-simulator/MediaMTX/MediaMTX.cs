@@ -17,24 +17,20 @@ namespace video_simulator.MediaMTX
         private readonly string _workingDir;
         private readonly ILogger<MediaMtxServer> _logger;
 
-        private static readonly Regex StreamOnlineRegex = new(@"\[path ([^\]]+)\] stream is available and online", RegexOptions.Compiled);
-        private static readonly Regex StreamOfflineRegex = new(@"\[path ([^\]]+)\] stream is no longer available", RegexOptions.Compiled);
-        private static readonly Regex ErrorRegex = new(@"ERR|WAR|error|decode error|failed", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
         public MediaMtxServer(string exePath, ILogger<MediaMtxServer> logger)
         {
-            _exePath = exePath ?? throw new ArgumentNullException(nameof(exePath));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _exePath = exePath ?? throw new ArgumentNullException(nameof(exePath), MediaMtxExceptions.ExePathNullException);
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger), MediaMtxExceptions.LoggerNullException);
             _workingDir = Path.GetDirectoryName(exePath)
-                ?? throw new DirectoryNotFoundException($"Invalid directory path: {exePath}");
+                ?? throw new DirectoryNotFoundException(string.Format(MediaMtxExceptions.InvalidDirectoryPathTemplate, exePath));
         }
 
-        public async Task StartAsync(int rtspPort = 8554, TimeSpan? timeout = null)
+        public async Task StartAsync(int rtspPort = Constants.RTSP_DEFAULT_PORT, TimeSpan? timeout = null)
         {
             var configPath = Path.Combine(_workingDir, "mediamtx.yml");
             if (!File.Exists(_exePath))
             {
-                throw new FileNotFoundException("MediaMTX binary not found at specified path.", _exePath);
+                throw new FileNotFoundException(MediaMtxExceptions.MediaMTXBinaryNotFound, _exePath);
             }
 
             var psi = new ProcessStartInfo
@@ -50,8 +46,21 @@ namespace video_simulator.MediaMTX
 
             _process = new Process { StartInfo = psi, EnableRaisingEvents = true };
 
-            _process.OutputDataReceived += (s, e) => ProcessLogData(e.Data, isErrorStream: false);
-            _process.ErrorDataReceived += (s, e) => ProcessLogData(e.Data, isErrorStream: true);
+            _process.OutputDataReceived += (s, e) =>
+            {
+                if (!string.IsNullOrWhiteSpace(e.Data))
+                {
+                    _logger.LogInformation(MediaMtxServerMessages.Output.OutputTemplate, e.Data);
+                }
+            };
+
+            _process.ErrorDataReceived += (s, e) =>
+            {
+                if (!string.IsNullOrWhiteSpace(e.Data))
+                {
+                    _logger.LogWarning(MediaMtxServerMessages.Output.ErrorTemplate, e.Data);
+                }
+            };
 
             _process.Exited += (s, e) =>
             {
@@ -65,40 +74,8 @@ namespace video_simulator.MediaMTX
             _process.BeginOutputReadLine();
             _process.BeginErrorReadLine();
 
-            await WaitUntilPortReadyAsync("127.0.0.1", rtspPort, timeout ?? TimeSpan.FromSeconds(5));
+            await WaitUntilPortReadyAsync(Constants.LOOPBACK_IP, rtspPort, timeout ?? TimeSpan.FromSeconds(Constants.MEDIAMTX_STARTUP_TIMEOUT_SECONDS));
             _logger.LogInformation(MediaMtxServerMessages.Success.ServerListeningTemplate, rtspPort);
-        }
-
-        private void ProcessLogData(string? logLine, bool isErrorStream)
-        {
-            if (string.IsNullOrWhiteSpace(logLine)) return;
-
-
-            var onlineMatch = StreamOnlineRegex.Match(logLine);
-            if (onlineMatch.Success)
-            {
-                _logger.LogInformation(MediaMtxServerMessages.Success.StreamPublishedTemplate, onlineMatch.Groups[1].Value);
-                return;
-            }
-
-
-            var offlineMatch = StreamOfflineRegex.Match(logLine);
-            if (offlineMatch.Success)
-            {
-                _logger.LogInformation(MediaMtxServerMessages.Success.StreamStoppedTemplate, offlineMatch.Groups[1].Value);
-                return;
-            }
-
-
-            if (isErrorStream || ErrorRegex.IsMatch(logLine))
-            {
-                if (logLine.Contains("RTP packets are too big") || logLine.Contains("wsarecv:"))
-                {
-                    return;
-                }
-
-                _logger.LogWarning(MediaMtxServerMessages.Error.ErrorLogTemplate, logLine.Trim());
-            }
         }
 
         private async Task WaitUntilPortReadyAsync(string host, int port, TimeSpan timeout)
@@ -114,10 +91,10 @@ namespace video_simulator.MediaMTX
                 }
                 catch (SocketException)
                 {
-                    await Task.Delay(100);
+                    await Task.Delay(Constants.WAIT_FOR_PORT_MILLISECONDS);
                 }
             }
-            throw new TimeoutException($"MediaMTX RTSP listener failed to start on port {port} within {timeout.TotalSeconds}s.");
+            throw new TimeoutException(string.Format(MediaMtxExceptions.RtspListenerFailedTemplate, port, timeout.TotalSeconds));
         }
 
         public void Stop()
@@ -129,7 +106,7 @@ namespace video_simulator.MediaMTX
                 try
                 {
                     _process.Kill(entireProcessTree: true);
-                    _process.WaitForExit(3000);
+                    _process.WaitForExit(Constants.MEDIAMTX_SHUTDOWN_TIMEOUT_MILLISECONDS);
                 }
                 catch (Exception ex)
                 {

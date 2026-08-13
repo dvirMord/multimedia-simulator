@@ -1,8 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Diagnostics;
-using Microsoft.Extensions.Logging;
+using video_simulator.Interfaces;
 using video_simulator.constans;
-using video_simulator.MediaMTX;
 using video_simulator.Validators;
 
 namespace video_simulator.Services
@@ -23,31 +22,27 @@ namespace video_simulator.Services
 
             this._ffmpegPath =
                 Environment.GetEnvironmentVariable(EnvConstants.ffmpegPathName)
-                ?? throw new InvalidOperationException("FFmpeg path is not configured.");
+                ?? throw new InvalidOperationException(FFmpegExceptions.FFmpegPathNotConfigured);
 
             this._storagePath = Environment.GetEnvironmentVariable(EnvConstants.tsFilesStorageName)
-                ?? throw new InvalidOperationException("TS files storage path is not configured.");
+                ?? throw new InvalidOperationException(FFmpegExceptions.TsFilesStoragePathNotConfigured);
         }
 
         //-----------------interface functions-----------------
 
-        public bool StartStream(string streamId)
+        public void StartStream(string streamId)
         {
             MyValidators.ValidateNotNullOrEmpty(streamId);
             MyValidators.ValidateFileExtension(streamId);
 
             if (this.IsStreamRunning(streamId))
             {
-                throw new ArgumentException($"{streamId} Stream is already running");
+                throw new ArgumentException(string.Format(FFmpegExceptions.StreamAlreadyRunningTemplate, streamId));
             }
 
-            MyValidators.ValidateFileExists(
-                streamId,
-                this._storagePath);
+            MyValidators.ValidateFileExists(streamId, this._storagePath);
 
-            string fullPath = Path.Combine(
-                this._storagePath,
-                streamId);
+            string fullPath = Path.Combine(this._storagePath, streamId);
 
             string args =
                  $"-re " +                                      // Read input at native frame rate
@@ -78,44 +73,39 @@ namespace video_simulator.Services
 
                 process.Start();
 
-                Thread.Sleep(500);
+                Thread.Sleep(Constants.FFMPEG_STARTUP_CHECK_MILLISECONDS);
 
                 if (process.HasExited)
                 {
-                    string errorLog =
-                        process.StandardError.ReadToEnd();
+                    string errorLog = process.StandardError.ReadToEnd();
 
                     _logger.LogError(FFmpegManagerMessages.Error.ProcessCrashedImmediately);
                     _logger.LogError(FFmpegManagerMessages.Error.FFmpegErrorOutputTemplate, errorLog);
 
                     process.Dispose();
 
-                    return false;
+                    throw new InvalidOperationException(FFmpegManagerMessages.Error.ProcessCrashedImmediately);
                 }
 
                 _logger.LogInformation(FFmpegManagerMessages.Success.StreamRunningTemplate, streamId);
 
-                this._runningStreams.TryAdd(
-                    streamId,
-                    process);
-
-                return true;
+                this._runningStreams.TryAdd(streamId, process);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, FFmpegManagerMessages.Error.FailedToStartStreamTemplate, ex.Message);
 
-                return false;
+                throw new InvalidOperationException(string.Format(FFmpegExceptions.StreamStartFailedTemplate, streamId, ex.Message), ex);
             }
         }
 
-        public bool StopStream(string streamId)
+        public void StopStream(string streamId)
         {
             MyValidators.ValidateNotNullOrEmpty(streamId);
 
             if (!this._runningStreams.TryGetValue(streamId, out Process? process))
             {
-               throw new ArgumentException($"Stream '{streamId}' is not running.");
+               throw new ArgumentException(string.Format(FFmpegExceptions.StreamNotRunningTemplate, streamId));
             }
 
             _logger.LogInformation(FFmpegManagerMessages.Success.StreamStoppedTemplate, streamId);
@@ -125,8 +115,6 @@ namespace video_simulator.Services
             this._runningStreams.TryRemove(streamId, out _);
 
             process.Dispose();
-
-            return true;
         }
 
         public bool IsStreamRunning(string streamId)

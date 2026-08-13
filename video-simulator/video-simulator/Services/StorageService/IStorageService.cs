@@ -1,8 +1,6 @@
-﻿namespace VideoSimulator.Services;
+﻿using video_simulator.DTOs;
 
-using Microsoft.AspNetCore.Http;
-using VideoSimulator.DTOs;
-
+namespace video_simulator.Interfaces;
 public interface IStorageService
 {
     Task<StoredFileResult> SaveFileAsync(IFormFile file, CancellationToken cancellationToken = default);

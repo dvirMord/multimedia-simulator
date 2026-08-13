@@ -1,7 +1,7 @@
-﻿using VideoSimulator.Services;
-using video_simulator.constans;
-using VideoSimulator.DTOs;
+﻿using video_simulator.constans;
+using video_simulator.DTOs;
 using video_simulator.Validators;
+using video_simulator.Interfaces;
 
 namespace video_simulator.Services
 {
@@ -34,11 +34,14 @@ namespace video_simulator.Services
                 await file.CopyToAsync(stream, cancellationToken);
             }
 
+            if(!File.Exists(fullPath))
+            {
+                throw new InvalidOperationException(string.Format(LocalStorageServiceExceptions.FileSaveFailedTemplate, file.FileName));
+            }
+
             return new StoredFileResult
             (
                 UniqueFileName: file.FileName,
-                OriginalFileName: file.FileName,
-                RelativePath: fullPath,
                 FullPath: fullPath,
                 FileSizeBytes: file.Length,
                 Extension: Constants.TS_FILE_EXTENSION
@@ -50,11 +53,13 @@ namespace video_simulator.Services
             MyValidators.ValidateNotNullOrEmpty(fileName);
             MyValidators.ValidateFileExtension(fileName);
             MyValidators.ValidateFileExists(fileName, this._storagePath);
-        
-            File.Delete(Path.Combine(this._storagePath, fileName));
-            return true;
+            string filePath = Path.Combine(this._storagePath, fileName);
+            File.Delete(filePath);
+            if (!File.Exists(filePath))
+            {
+                return true;
+            }
+            throw new InvalidOperationException(string.Format(LocalStorageServiceExceptions.FileDeleteFailedTemplate, fileName));
         }
-
-        
     }
 }

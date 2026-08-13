@@ -1,4 +1,4 @@
-﻿namespace video_simulator.Services
+﻿namespace video_simulator.Interfaces
 {
     public interface IVideoSimulatorService
     {
@@ -6,7 +6,7 @@
         Task<bool> ReceiveFileAsync(IFormFile file);
         bool DeleteFile(string fileName);
         //streams
-        bool StartRtspStream(string fileName);
-        bool StopRtspStream(string streamName);
+        void StartRtspStream(string fileName);
+        void StopRtspStream(string streamName);
     }
 }

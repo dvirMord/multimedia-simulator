@@ -1,43 +1,41 @@
 ﻿using video_simulator.constans;
-using VideoSimulator.DTOs;
-using VideoSimulator.Services;
+using video_simulator.DTOs;
+using video_simulator.Interfaces;
 
 namespace video_simulator.Services
 {
     public class VideoSimulatorService : IVideoSimulatorService
     {
         private readonly IFFmpegManager _ffmpegService;
-        private readonly IStorageService _localStorgeService;
+        private readonly IStorageService _storageManagementService;
 
         public VideoSimulatorService(IFFmpegManager ffmpegService, IStorageService storageService)
         {
             this._ffmpegService = ffmpegService;
-            this._localStorgeService = storageService;
+            this._storageManagementService = storageService;
         }
 
         //files
         public async Task<bool> ReceiveFileAsync(IFormFile file)
         {
-            StoredFileResult newFile = await this._localStorgeService.SaveFileAsync(file);
+            StoredFileResult newFile = await this._storageManagementService.SaveFileAsync(file);
             return true;
         }
 
         public bool DeleteFile(string fileName)
         {
-            this._localStorgeService.DeleteFile(fileName); 
+            this._storageManagementService.DeleteFile(fileName); 
             return true;
         }
 
         //streams
-        public bool StartRtspStream(string fileName)
+        public void StartRtspStream(string fileName)
         {
             this._ffmpegService.StartStream(fileName);
-            return true;
         }
-        public bool StopRtspStream(string streamName)
+        public void StopRtspStream(string streamName)
         {
             this._ffmpegService.StopStream(streamName);
-            return true;
         }
     }
 

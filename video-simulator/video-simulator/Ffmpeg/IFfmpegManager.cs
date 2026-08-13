@@ -1,9 +1,9 @@
-﻿namespace video_simulator.Services
+﻿namespace video_simulator.Interfaces
 {
     public interface IFFmpegManager
     {
-        public bool StartStream(string streamId);
-        public bool StopStream(string streamId);
+        public void StartStream(string streamId);
+        public void StopStream(string streamId);
         public bool IsStreamRunning(string streamId);
         public List<string> GetRunningStreams();
         public void KillAllRunningStreams();

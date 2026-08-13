@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using video_simulator.constans;
-using video_simulator.DTOs;
-using video_simulator.Services;
+using video_simulator.Interfaces;
 
 namespace video_simulator.Controllers
 {
@@ -69,10 +68,10 @@ namespace video_simulator.Controllers
         {
             try
             {
-                bool result = _videoSimulatorService.StartRtspStream(request.FileName);
+                _videoSimulatorService.StartRtspStream(request.FileName);
                 return Ok(new 
                 {
-                    success = result,
+                    success = true,
                     message = string.Format(StreamsControllerMessages.Success.StartStreamTriggeredTemplate, request.FileName)
                 });
             }
@@ -85,6 +84,7 @@ namespace video_simulator.Controllers
                 });
             }
         }
+        
 
             
         [HttpPost("stream/stop")]
@@ -92,10 +92,10 @@ namespace video_simulator.Controllers
         {
             try
             {
-                bool result = _videoSimulatorService.StopRtspStream(request.StreamName);
+                _videoSimulatorService.StopRtspStream(request.StreamName);
                 return Ok(new 
                 {
-                    success = result,
+                    success = true,
                     message = string.Format(StreamsControllerMessages.Success.StopStreamTriggeredTemplate, request.StreamName)
                 });
             }
