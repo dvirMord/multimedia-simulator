@@ -42,4 +42,37 @@
             public const string StopStreamFailedTemplate = "Cant stop stream {0}, {1}";
         }
     }
+
+    public static class FFmpegManagerMessages
+    {
+        public static class Success
+        {
+            public const string StreamRunningTemplate = "Stream '{0}' is running via RTSP!";
+            public const string StreamStoppedTemplate = "Stopping stream '{0}'...";
+        }
+        public static class Error
+        {
+            public const string ProcessCrashedImmediately = "Process CRASHED immediately!";
+            public const string FFmpegErrorOutputTemplate = "FFmpeg Error Output:\n{0}";
+            public const string FailedToStartStreamTemplate = "Failed to start stream: {0}";
+        }
+    }
+
+    public static class MediaMtxServerMessages
+    {
+        public static class Success
+        {
+            public const string ServerListeningTemplate = "Server is bound and listening on RTSP port {0}";
+            public const string StreamPublishedTemplate = "Stream published: '{0}'";
+            public const string StreamStoppedTemplate = "Stream stopped: '{0}'";
+            public const string ShuttingDown = "Shutting down MediaMTX process...";
+        }
+        public static class Error
+        {
+            public const string ProcessTerminatedUnexpectedlyTemplate = "PROCESS TERMINATED UNEXPECTEDLY! (ExitCode: {0})";
+            public const string ErrorLogTemplate = "{0}";
+            public const string ShutdownExceptionTemplate = "Exception during shutdown: {0}";
+        }
+    }
 }
+

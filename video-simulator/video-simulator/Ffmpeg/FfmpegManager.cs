@@ -1,21 +1,24 @@
 ﻿using System.Collections.Concurrent;
 using System.Diagnostics;
+using Microsoft.Extensions.Logging;
 using video_simulator.constans;
 using video_simulator.MediaMTX;
 using video_simulator.Validators;
-using VideoSimulator.Services;
 
 namespace video_simulator.Services
 {
-    public class FfmpegManager : IFfmpegManager
+    public class FFmpegManager : IFFmpegManager
     {
         private readonly ConcurrentDictionary<string, Process> _runningStreams;
         private readonly string _ffmpegPath;
         private readonly string _storagePath;
+        private readonly ILogger<FFmpegManager> _logger;
+
 
         //-----------------constructor-----------------
-        public FfmpegManager()
+        public FFmpegManager(ILogger<FFmpegManager> logger)
         {
+            this._logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this._runningStreams = new ConcurrentDictionary<string, Process>();
 
             this._ffmpegPath =
@@ -82,19 +85,15 @@ namespace video_simulator.Services
                     string errorLog =
                         process.StandardError.ReadToEnd();
 
-                    Console.WriteLine(
-                        "[ffmpeg manager] Process CRASHED immediately!");
-
-                    Console.WriteLine(
-                        $"[ffmpeg manager] FFmpeg Error Output:\n{errorLog}");
+                    _logger.LogError(FFmpegManagerMessages.Error.ProcessCrashedImmediately);
+                    _logger.LogError(FFmpegManagerMessages.Error.FFmpegErrorOutputTemplate, errorLog);
 
                     process.Dispose();
 
                     return false;
                 }
 
-                Console.WriteLine(
-                    $"[ffmpeg manager] Stream '{streamId}' is running via RTSP!");
+                _logger.LogInformation(FFmpegManagerMessages.Success.StreamRunningTemplate, streamId);
 
                 this._runningStreams.TryAdd(
                     streamId,
@@ -104,8 +103,7 @@ namespace video_simulator.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine(
-                    $"[ffmpeg manager] Failed to start stream: {ex.Message}");
+                _logger.LogError(ex, FFmpegManagerMessages.Error.FailedToStartStreamTemplate, ex.Message);
 
                 return false;
             }
@@ -120,7 +118,7 @@ namespace video_simulator.Services
                throw new ArgumentException($"Stream '{streamId}' is not running.");
             }
 
-            Console.WriteLine($"[ffmpeg manager] Stopping stream '{streamId}'...");
+            _logger.LogInformation(FFmpegManagerMessages.Success.StreamStoppedTemplate, streamId);
 
             process.Kill();
 

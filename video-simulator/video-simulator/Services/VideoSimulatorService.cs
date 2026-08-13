@@ -6,10 +6,10 @@ namespace video_simulator.Services
 {
     public class VideoSimulatorService : IVideoSimulatorService
     {
-        private readonly IFfmpegManager _ffmpegService;
+        private readonly IFFmpegManager _ffmpegService;
         private readonly IStorageService _localStorgeService;
 
-        public VideoSimulatorService(IFfmpegManager ffmpegService, IStorageService storageService)
+        public VideoSimulatorService(IFFmpegManager ffmpegService, IStorageService storageService)
         {
             this._ffmpegService = ffmpegService;
             this._localStorgeService = storageService;

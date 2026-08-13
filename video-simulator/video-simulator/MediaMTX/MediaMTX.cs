@@ -4,6 +4,8 @@ using System.IO;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using video_simulator.constans;
 
 namespace video_simulator.MediaMTX
 {
@@ -13,14 +15,16 @@ namespace video_simulator.MediaMTX
         private bool _isExplicitStopping;
         private readonly string _exePath;
         private readonly string _workingDir;
+        private readonly ILogger<MediaMtxServer> _logger;
 
         private static readonly Regex StreamOnlineRegex = new(@"\[path ([^\]]+)\] stream is available and online", RegexOptions.Compiled);
         private static readonly Regex StreamOfflineRegex = new(@"\[path ([^\]]+)\] stream is no longer available", RegexOptions.Compiled);
         private static readonly Regex ErrorRegex = new(@"ERR|WAR|error|decode error|failed", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-        public MediaMtxServer(string exePath)
+        public MediaMtxServer(string exePath, ILogger<MediaMtxServer> logger)
         {
             _exePath = exePath ?? throw new ArgumentNullException(nameof(exePath));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _workingDir = Path.GetDirectoryName(exePath)
                 ?? throw new DirectoryNotFoundException($"Invalid directory path: {exePath}");
         }
@@ -53,7 +57,7 @@ namespace video_simulator.MediaMTX
             {
                 if (!_isExplicitStopping)
                 {
-                    Console.WriteLine($"[mediamtx] PROCESS TERMINATED UNEXPECTEDLY! (ExitCode: {_process.ExitCode})");
+                    _logger.LogError(MediaMtxServerMessages.Error.ProcessTerminatedUnexpectedlyTemplate, _process.ExitCode);
                 }
             };
 
@@ -62,30 +66,30 @@ namespace video_simulator.MediaMTX
             _process.BeginErrorReadLine();
 
             await WaitUntilPortReadyAsync("127.0.0.1", rtspPort, timeout ?? TimeSpan.FromSeconds(5));
-            Console.WriteLine($"[mediamtx] Server is bound and listening on RTSP port {rtspPort}");
+            _logger.LogInformation(MediaMtxServerMessages.Success.ServerListeningTemplate, rtspPort);
         }
 
         private void ProcessLogData(string? logLine, bool isErrorStream)
         {
             if (string.IsNullOrWhiteSpace(logLine)) return;
 
-            
+
             var onlineMatch = StreamOnlineRegex.Match(logLine);
             if (onlineMatch.Success)
             {
-                Console.WriteLine($"[mediamtx] Stream published: '{onlineMatch.Groups[1].Value}'");
+                _logger.LogInformation(MediaMtxServerMessages.Success.StreamPublishedTemplate, onlineMatch.Groups[1].Value);
                 return;
             }
 
-           
+
             var offlineMatch = StreamOfflineRegex.Match(logLine);
             if (offlineMatch.Success)
             {
-                Console.WriteLine($"[mediamtx] Stream stopped: '{offlineMatch.Groups[1].Value}'");
+                _logger.LogInformation(MediaMtxServerMessages.Success.StreamStoppedTemplate, offlineMatch.Groups[1].Value);
                 return;
             }
 
-            
+
             if (isErrorStream || ErrorRegex.IsMatch(logLine))
             {
                 if (logLine.Contains("RTP packets are too big") || logLine.Contains("wsarecv:"))
@@ -93,7 +97,7 @@ namespace video_simulator.MediaMTX
                     return;
                 }
 
-                Console.WriteLine($"[mediamtx error] {logLine.Trim()}");
+                _logger.LogWarning(MediaMtxServerMessages.Error.ErrorLogTemplate, logLine.Trim());
             }
         }
 
@@ -121,7 +125,7 @@ namespace video_simulator.MediaMTX
             if (_process != null && !_process.HasExited)
             {
                 _isExplicitStopping = true;
-                Console.WriteLine("[mediamtx] Shutting down MediaMTX process...");
+                _logger.LogInformation(MediaMtxServerMessages.Success.ShuttingDown);
                 try
                 {
                     _process.Kill(entireProcessTree: true);
@@ -129,7 +133,7 @@ namespace video_simulator.MediaMTX
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"[mediamtx error] Exception during shutdown: {ex.Message}");
+                    _logger.LogError(ex, MediaMtxServerMessages.Error.ShutdownExceptionTemplate, ex.Message);
                 }
             }
         }
