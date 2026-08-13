@@ -25,7 +25,7 @@
         {
             public const string FileSaveFailedTemplate = "Failed to save file: {0}";
             public const string FileReciveFailedTemplate = "Failed to recive file: {0}";
-            public const string FileDeleteFailedTemplate = "Failed to delete file: {0}";
+            public const string FileDeleteFailedTemplate = "Failed to delete file: {0} {1}";
         }
     }
 

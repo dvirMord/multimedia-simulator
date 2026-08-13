@@ -2,9 +2,9 @@
 
 namespace video_simulator.DTOs
 {
-    public class StopStreamRequestDTO
+    public class StopStreamDTO
     {
         [Required(ErrorMessage = "StreamId is required.")]
-        public string? StreamName { get; set; }
+        public required string StreamName { get; init; }
     }
 }

@@ -5,6 +5,7 @@ using video_simulator.Services;
 
 namespace video_simulator.Controllers
 {
+    //-------------APIs for files---------------
     [ApiController]
     [Route("api/vs")]
     public class VideoSimulatorController : ControllerBase
@@ -18,7 +19,7 @@ namespace video_simulator.Controllers
 
         [HttpPost("files")]
         [RequestSizeLimit(Constants.TRANSMITTED_FILE_SIZE)]
-        public async Task<IActionResult> UploadFile(IFormFile file)
+        public async Task<IActionResult> ReceiveFile(IFormFile file)
         {
             try
             {
@@ -40,8 +41,8 @@ namespace video_simulator.Controllers
         }
 
 
-        [HttpDelete("files/{fileName}")]
-        public IActionResult DeleteFile(string fileName)
+        [HttpDelete("files")]
+        public IActionResult DeleteFile([FromBody]  string fileName)
         {
             try
             {
@@ -57,12 +58,12 @@ namespace video_simulator.Controllers
                 return BadRequest(new 
                 { 
                     success = false, 
-                    message = string.Format(FilesControllerMessages.Error.FileDeleteFailedTemplate, fileName)   
+                    message = string.Format(FilesControllerMessages.Error.FileDeleteFailedTemplate, fileName, ex.Message)   
                 });
             }
         }
 
-
+        //-------------------- APIs for streams-----------------
         [HttpPost("stream/start")]
         public IActionResult StartStream([FromBody] DTOs.StartStreamDTO request)
         {

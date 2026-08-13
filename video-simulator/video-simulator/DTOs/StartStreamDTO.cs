@@ -5,6 +5,6 @@ namespace video_simulator.DTOs
     public class StartStreamDTO
     {
         [Required(ErrorMessage = "FileName is required.")]
-        public string? FileName { get; set; }
+        public required string FileName { get; init; } //init -only property to make it immutable after initialization
     }
 }
