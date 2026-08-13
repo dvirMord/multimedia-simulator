@@ -64,7 +64,7 @@ namespace video_simulator.Controllers
 
 
         [HttpPost("stream/start")]
-        public IActionResult StartStream([FromBody] StartStreamRequest request)
+        public IActionResult StartStream([FromBody] DTOs.StartStreamDTO request)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace video_simulator.Controllers
 
             
         [HttpPost("stream/stop")]
-        public IActionResult StopStream([FromBody] StopStreamRequest request)
+        public IActionResult StopStream([FromBody] DTOs.StopStreamDTO request)
         {
             try
             {
