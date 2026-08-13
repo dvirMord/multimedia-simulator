@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Superpower.Model;
 using video_simulator.constans;
 using video_simulator.DTOs;
 using video_simulator.Services;
@@ -18,17 +17,25 @@ namespace video_simulator.Controllers
         }
 
         [HttpPost("files")]
-        [RequestSizeLimit(Constants.FIVE_HUNDRED_MB)]
+        [RequestSizeLimit(Constants.TRANSMITTED_FILE_SIZE)]
         public async Task<IActionResult> UploadFile(IFormFile file)
         {
             try
             {
-                bool result = await _videoSimulatorService.UploadFileAsync(file);
-                return Ok(new { success = true, message = "File uploaded successfully." });
+                bool result = await _videoSimulatorService.ReceiveFileAsync(file);
+                return Ok(new 
+                {
+                    success = true, 
+                    message = string.Format(FilesControllerMessages.Success.FileReciveAndSave)
+                });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { success = false, message = $"Failed to upload file: {ex.Message}" });
+                return BadRequest(new 
+                { 
+                    success = false, 
+                    message = string.Format(FilesControllerMessages.Error.FileSaveFailedTemplate, ex.Message)
+                });
             }
         }
 
@@ -39,11 +46,19 @@ namespace video_simulator.Controllers
             try
             {
                 bool result = _videoSimulatorService.DeleteFile(fileName);
-                return Ok(new { success = result, message = $"Deleted \"{fileName}\" successfully." });
+                return Ok(new 
+                {
+                    success = result, 
+                    message = string.Format(FilesControllerMessages.Success.DeleteSuccessTemplate, fileName)
+                });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { success = false, message = $"Failed to delete file: {ex.Message}" });
+                return BadRequest(new 
+                { 
+                    success = false, 
+                    message = string.Format(FilesControllerMessages.Error.FileDeleteFailedTemplate, fileName)   
+                });
             }
         }
 
@@ -54,26 +69,42 @@ namespace video_simulator.Controllers
             try
             {
                 bool result = _videoSimulatorService.StartRtspStream(request.FileName);
-                return Ok(new { success = result, message = $"Start stream triggered for {request.FileName}" });
+                return Ok(new 
+                {
+                    success = result,
+                    message = string.Format(StreamsControllerMessages.Success.StartStreamTriggeredTemplate, request.FileName)
+                });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { success = false, message = $"Cant stream {request.FileName}, {ex.Message}"});
+                return BadRequest(new 
+                { 
+                    success = false,
+                    message = string.Format(StreamsControllerMessages.Error.StartStreamFailedTemplate, request.FileName, ex.Message)
+                });
             }
         }
 
-
+            
         [HttpPost("stream/stop")]
         public IActionResult StopStream([FromBody] StopStreamRequest request)
         {
             try
             {
                 bool result = _videoSimulatorService.StopRtspStream(request.StreamName);
-                return Ok(new { success = result, message = $"Stop stream triggered for {request.StreamName}" });
+                return Ok(new 
+                {
+                    success = result,
+                    message = string.Format(StreamsControllerMessages.Success.StopStreamTriggeredTemplate, request.StreamName)
+                });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { success = false, message = $"Cant stop stream {request.StreamName}, {ex.Message}" });
+                return BadRequest(new 
+                { 
+                    success = false, 
+                    message = string.Format(StreamsControllerMessages.Error.StopStreamFailedTemplate, request.StreamName, ex.Message)
+                });
             }
         }
     }

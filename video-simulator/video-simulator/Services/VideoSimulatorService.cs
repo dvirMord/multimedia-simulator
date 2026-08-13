@@ -16,7 +16,7 @@ namespace video_simulator.Services
         }
 
         //files
-        public async Task<bool> UploadFileAsync(IFormFile file)
+        public async Task<bool> ReceiveFileAsync(IFormFile file)
         {
             StoredFileResult newFile = await this._localStorgeService.SaveFileAsync(file);
             return true;

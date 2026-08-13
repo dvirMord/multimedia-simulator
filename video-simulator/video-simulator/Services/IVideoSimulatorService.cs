@@ -3,7 +3,7 @@
     public interface IVideoSimulatorService
     {
         //files
-        Task<bool> UploadFileAsync(IFormFile file);
+        Task<bool> ReceiveFileAsync(IFormFile file);
         bool DeleteFile(string fileName);
         //streams
         bool StartRtspStream(string fileName);
