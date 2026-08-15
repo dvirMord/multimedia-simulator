@@ -1,12 +1,10 @@
 ﻿namespace multimedia_simulator.Interfaces
 {
-    public interface IMultimediaSimulatorService
+    public interface IRtspStreamsService
     {
-        //files
-        Task<bool> ReceiveFileAsync(IFormFile file);
-        Task<bool> DeleteFileAsync(string fileName);
         //streams
         Task StartRtspStreamAsync(string fileName);
         Task StopRtspStreamAsync(string streamName);
     }
 }
+

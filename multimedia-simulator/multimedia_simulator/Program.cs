@@ -14,7 +14,8 @@ string dbPath = Environment.GetEnvironmentVariable(EnvConstants.dbConnectionStri
                 ?? throw new InvalidOperationException(DBManagerExceptions.DBPathNotConfigured);
 
 //---------------DIs------------------------------------------------------------
-builder.Services.AddSingleton<IMultimediaSimulatorService, MultimediaSimulatorService>();
+builder.Services.AddSingleton<IMultimediaFilesService, MultimediaFilesService>();
+builder.Services.AddSingleton<IRtspStreamsService, RtspStreamsService>();
 builder.Services.AddSingleton<IStorageService, LocalStorageService>();
 builder.Services.AddSingleton<IFFmpegManager, FFmpegManager>();
 builder.Services.AddSingleton<IDBManager>(db => new SQLiteManager(dbPath));

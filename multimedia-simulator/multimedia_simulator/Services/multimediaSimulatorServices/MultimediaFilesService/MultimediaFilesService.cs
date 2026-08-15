@@ -1,16 +1,15 @@
-﻿using multimedia_simulator.constans;
-using multimedia_simulator.DTOs;
+﻿using multimedia_simulator.DTOs;
 using multimedia_simulator.Interfaces;
 
 namespace multimedia_simulator.Services
 {
-    public class MultimediaSimulatorService : IMultimediaSimulatorService
+    public class MultimediaFilesService : IMultimediaFilesService
     {
         private readonly IFFmpegManager _ffmpegService;
         private readonly IStorageService _storageManagementService;
         private readonly IDBManager _DBService;
 
-        public MultimediaSimulatorService(IFFmpegManager ffmpegService, 
+        public MultimediaFilesService(IFFmpegManager ffmpegService,
             IStorageService storageService, IDBManager dbService)
         {
             this._ffmpegService = ffmpegService;
@@ -18,7 +17,6 @@ namespace multimedia_simulator.Services
             this._DBService = dbService;
         }
 
-        //files
         public async Task<bool> ReceiveFileAsync(IFormFile file)
         {
             StoredFileResult newFile = await this._storageManagementService.SaveFileAsync(file);
@@ -32,20 +30,9 @@ namespace multimedia_simulator.Services
             {
                 await this._ffmpegService.StopStreamAsync(fileName);
             }
-            
-            this._storageManagementService.DeleteFile(fileName); 
+
+            this._storageManagementService.DeleteFile(fileName);
             return true;
         }
-
-        //streams
-        public async Task StartRtspStreamAsync(string fileName)
-        {
-            await this._ffmpegService.StartStreamAsync(fileName);
-        }
-        public async Task StopRtspStreamAsync(string streamName)
-        {
-            await this._ffmpegService.StopStreamAsync(streamName);
-        }
     }
-
 }
