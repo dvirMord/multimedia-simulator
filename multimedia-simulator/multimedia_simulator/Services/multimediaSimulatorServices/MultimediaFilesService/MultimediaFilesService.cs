@@ -1,5 +1,6 @@
 ﻿using multimedia_simulator.DTOs;
 using multimedia_simulator.Interfaces;
+using multimedia_simulator.constans;
 
 namespace multimedia_simulator.Services
 {
@@ -20,6 +21,11 @@ namespace multimedia_simulator.Services
         public async Task<bool> ReceiveFileAsync(IFormFile file)
         {
             StoredFileResult newFile = await this._storageManagementService.SaveFileAsync(file);
+            int newId = await this._DBService.AddSourceFileAsync(file.FileName, file.Length);
+            if(newId == Constants.BadInsertResponseCode)
+            {
+                throw new InvalidOperationException(string.Format(DBManagerExceptions.DBFalifToInsert, file.FileName));
+            }
             return true;
         }
 
@@ -32,6 +38,12 @@ namespace multimedia_simulator.Services
             }
 
             this._storageManagementService.DeleteFile(fileName);
+            bool isDeleted = await this._DBService.DeleteSourceFileAsync(fileName);
+            if (!isDeleted)
+            {
+                throw new InvalidOperationException(
+                    string.Format(DBManagerExceptions.DBFalidToDelete, fileName));
+            }
             return true;
         }
     }

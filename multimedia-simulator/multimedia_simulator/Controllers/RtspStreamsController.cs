@@ -21,7 +21,7 @@ namespace multimedia_simulator.Controllers
         {
             try
             {
-                await this._rtspStreamsService.StartRtspStreamAsync(request.FileName);
+                await this._rtspStreamsService.StartRtspStreamAsync(request);
                 return Ok(new
                 {
                     success = true,

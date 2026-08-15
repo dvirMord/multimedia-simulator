@@ -3,7 +3,7 @@
     public interface IRtspStreamsService
     {
         //streams
-        Task StartRtspStreamAsync(string fileName);
+        Task StartRtspStreamAsync(DTOs.StartStreamDTO request);
         Task StopRtspStreamAsync(string streamName);
     }
 }

@@ -16,5 +16,13 @@ namespace multimedia_simulator.Interfaces
 
         //Used for lookups where at most one record is expected
         Task<T?> QuerySingleOrDefaultAsync<T>(string query, object? parameters = null);
+
+        //--------------------functions for files-------------------
+        Task<int> AddSourceFileAsync(string fileName, long fileSize);
+        Task<bool> DeleteSourceFileAsync(string fileName);
+        //---------------------functions for streams--------------------
+        Task<int> AddChannelAsync(int deviceId, int sourceFilesId, string streamEndpoint, string type, int pid);
+        Task<bool> DeleteChannelAsync(string channelEndPoint);
+
     }
 }

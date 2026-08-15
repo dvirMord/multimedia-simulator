@@ -30,7 +30,7 @@ namespace multimedia_simulator.Services
 
         //-----------------interface functions-----------------
 
-        public async Task StartStreamAsync(string streamId)
+        public async Task<int> StartStreamAsync(string streamId)
         {
             MyValidators.ValidateNotNullOrEmpty(streamId);
             MyValidators.ValidateFileExtension(streamId);
@@ -92,6 +92,7 @@ namespace multimedia_simulator.Services
                 _logger.LogInformation(FFmpegManagerMessages.Success.StreamRunningTemplate, streamId);
 
                 this._runningStreams.TryAdd(streamId, process);
+                return process.Id;
             }
             catch (Exception ex)
             {

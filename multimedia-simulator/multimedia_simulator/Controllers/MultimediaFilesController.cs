@@ -10,12 +10,14 @@ namespace multimedia_simulator.Controllers
     {
         private readonly IMultimediaFilesService _multimediaSimulatorService;
         private readonly ILogger<MultimediaFilesController> _logger;
+       
 
         public MultimediaFilesController(IMultimediaFilesService multimediaSimulatorService,
             ILogger<MultimediaFilesController> logger)
         {
             this._multimediaSimulatorService = multimediaSimulatorService;
             this._logger = logger;
+            
         }
 
         //-------------APIs for files---------------
@@ -26,7 +28,7 @@ namespace multimedia_simulator.Controllers
             this._logger.LogInformation(FilesLoggerMessages.ReciveFilelog, file.FileName);
             try
             {
-                bool result = await _multimediaSimulatorService.ReceiveFileAsync(file);
+                bool result = await _multimediaSimulatorService.ReceiveFileAsync(file);  
                 return Ok(new
                 {
                     success = true,

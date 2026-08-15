@@ -18,5 +18,8 @@
         // ffmpeg process
         public const int FFMPEG_STARTUP_CHECK_MILLISECONDS = 500;
         public const int WAIT_FOR_FFMPEG_STREAM_TO_CLOSE = 5;
+
+        //sql
+        public const int BadInsertResponseCode = 0;
     }
 }
