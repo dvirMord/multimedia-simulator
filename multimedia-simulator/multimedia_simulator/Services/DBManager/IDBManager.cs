@@ -21,7 +21,7 @@ namespace multimedia_simulator.Interfaces
         Task<int> AddSourceFileAsync(string fileName, long fileSize);
         Task<bool> DeleteSourceFileAsync(string fileName);
         //---------------------functions for streams--------------------
-        Task<int> AddChannelAsync(int deviceId, int sourceFilesId, string streamEndpoint, string type, int pid);
+        Task<int> AddChannelAsync(int sourceFilesId, string streamEndpoint, string type, int pid);
         Task<bool> DeleteChannelAsync(string channelEndPoint);
 
     }

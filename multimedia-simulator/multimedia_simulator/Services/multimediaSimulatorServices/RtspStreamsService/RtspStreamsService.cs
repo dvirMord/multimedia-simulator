@@ -25,7 +25,7 @@ namespace multimedia_simulator.Services
             string streamEndPoint = constans.Constants.RTSP_STREAM_URL + request.FileName;
 
             int newId = await this._dbManager.AddChannelAsync(
-                request.DeviceId, request.SourceFileId, streamEndPoint, request.Type.ToString(), pid);
+                request.SourceFileId, streamEndPoint, request.Type.ToString(), pid);
             if (newId == constans.Constants.BadInsertResponseCode)
             {
                 throw new InvalidOperationException(

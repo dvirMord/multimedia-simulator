@@ -33,11 +33,9 @@
         public class Channels
         {
             public const string Insert = @"
-                INSERT INTO Channels (DeviceId, SourceFilesId, StreamEndpoint, Type, FFmpegProcessId) 
-                VALUES (@DeviceId, @SourceFilesId, @StreamEndpoint, @Type, @FFmpegProcessId);
+                INSERT INTO Channels (SourceFilesId, StreamEndpoint, Type, FFmpegProcessId) 
+                VALUES (@SourceFilesId, @StreamEndpoint, @Type, @FFmpegProcessId);
                 SELECT last_insert_rowid();";
-
-            public const string GetByDeviceId = "SELECT * FROM Channels WHERE DeviceId = @DeviceId;";
             public const string UpdateProcessId = "UPDATE Channels SET FFmpegProcessId = @ProcessId WHERE Id = @Id;";
             public const string DeleteById = "DELETE FROM Channels WHERE Id = @Id;";
             public const string DeleteByEndpoint = "DELETE FROM Channels WHERE StreamEndpoint = @StreamEndpoint;";
