@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using multimedia_simulator.constans;
 using multimedia_simulator.Interfaces;
+using Asp.Versioning;
 
 namespace multimedia_simulator.Controllers
 {
     [ApiController]
-    [Route("api/ms")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/ms")]
     public class MultimediaFilesController : ControllerBase
     {
         private readonly IMultimediaFilesService _multimediaSimulatorService;
@@ -55,7 +57,7 @@ namespace multimedia_simulator.Controllers
                 bool result = await _multimediaSimulatorService.DeleteFileAsync(requset.FileName);
                 return Ok(new
                 {
-                    success = result,
+                    success = result,   
                     message = string.Format(FilesControllerMessages.Success.DeleteSuccessTemplate, requset.FileName)
                 });
             }

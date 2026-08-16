@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using multimedia_simulator.constans;
 using multimedia_simulator.Interfaces;
 
 namespace multimedia_simulator.Controllers
 {
     [ApiController]
-    [Route("api/ms")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/ms")]
     public class RtspStreamsController: ControllerBase
     {
         private readonly IRtspStreamsService _rtspStreamsService;
