@@ -18,7 +18,7 @@ namespace multimedia_simulator.Services
             this._DBService = dbService;
         }
 
-        public async Task<bool> ReceiveFileAsync(IFormFile file)
+        public async Task<int> ReceiveFileAsync(IFormFile file)
         {
             StoredFileResult newFile = await this._storageManagementService.SaveFileAsync(file);
             int newId = await this._DBService.AddSourceFileAsync(file.FileName, file.Length);
@@ -26,7 +26,7 @@ namespace multimedia_simulator.Services
             {
                 throw new InvalidOperationException(string.Format(DBManagerExceptions.DBFalifToInsert, file.FileName));
             }
-            return true;
+            return newId;
         }
 
         public async Task<bool> DeleteFileAsync(string fileName)

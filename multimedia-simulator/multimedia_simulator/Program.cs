@@ -23,9 +23,8 @@ builder.Services.AddApiVersioning(options =>
     options.GroupNameFormat = "'v'VVV";
     options.SubstituteApiVersionInUrl = true;
 });
-
-// רישום מסמך OpenAPI עבור גרסה v1
 builder.Services.AddOpenApi("v1");
+//------------------------------------------------------------------------------    
 
 //--------------- DIs ---------------------------------------------------------
 string dbPath = Environment.GetEnvironmentVariable(EnvConstants.dbConnectionStringName)

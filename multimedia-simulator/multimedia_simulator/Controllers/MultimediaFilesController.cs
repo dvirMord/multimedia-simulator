@@ -30,11 +30,12 @@ namespace multimedia_simulator.Controllers
             this._logger.LogInformation(FilesLoggerMessages.ReciveFilelog, file.FileName);
             try
             {
-                bool result = await _multimediaSimulatorService.ReceiveFileAsync(file);  
+                int newIdInDb = await _multimediaSimulatorService.ReceiveFileAsync(file);  
                 return Ok(new
                 {
                     success = true,
-                    message = string.Format(FilesControllerMessages.Success.FileReciveAndSave)
+                    message = string.Format(FilesControllerMessages.Success.FileReciveAndSave),
+                    idInDb = newIdInDb
                 });
             }
             catch (Exception ex)
