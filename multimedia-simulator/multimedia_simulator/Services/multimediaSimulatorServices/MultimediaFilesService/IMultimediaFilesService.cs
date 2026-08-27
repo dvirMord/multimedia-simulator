@@ -3,7 +3,7 @@
     public interface IMultimediaFilesService
     {
         //files
-        Task<bool> ReceiveFileAsync(IFormFile file);
+        Task<int> ReceiveFileAsync(IFormFile file);
         Task<bool> DeleteFileAsync(string fileName);
     }
 }
