@@ -5,6 +5,10 @@
         // -------------------- SourceFiles Queries --------------------
         public  class SourceFiles
         {
+            public const string GET_SOURCE_FILE_PATH_BY_ID = @"
+                SELECT Path 
+                FROM SourceFiles 
+                WHERE Id = @Id;";
             public const string Insert = @"
                 INSERT INTO SourceFiles (Path, Size) 
                 VALUES (@Path, @Size);

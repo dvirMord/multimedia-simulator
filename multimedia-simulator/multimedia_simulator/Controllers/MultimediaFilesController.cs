@@ -12,17 +12,16 @@ namespace multimedia_simulator.Controllers
     {
         private readonly IMultimediaFilesService _multimediaSimulatorService;
         private readonly ILogger<MultimediaFilesController> _logger;
-       
 
-        public MultimediaFilesController(IMultimediaFilesService multimediaSimulatorService,
+        public MultimediaFilesController(
+            IMultimediaFilesService multimediaSimulatorService,
             ILogger<MultimediaFilesController> logger)
         {
             this._multimediaSimulatorService = multimediaSimulatorService;
             this._logger = logger;
-            
         }
 
-        //-------------APIs for files---------------
+        // -------------APIs for files---------------
         [HttpPost("files")]
         [RequestSizeLimit(Constants.TRANSMITTED_FILE_SIZE)]
         public async Task<IActionResult> ReceiveFileAsync(IFormFile file)
@@ -30,11 +29,11 @@ namespace multimedia_simulator.Controllers
             this._logger.LogInformation(FilesLoggerMessages.ReciveFilelog, file.FileName);
             try
             {
-                int newIdInDb = await _multimediaSimulatorService.ReceiveFileAsync(file);  
+                int newIdInDb = await _multimediaSimulatorService.ReceiveFileAsync(file);
                 return Ok(new
                 {
                     success = true,
-                    message = string.Format(FilesControllerMessages.Success.FileReciveAndSave),
+                    message = FilesControllerMessages.Success.FileReciveAndSave,
                     idInDb = newIdInDb
                 });
             }
@@ -48,18 +47,34 @@ namespace multimedia_simulator.Controllers
             }
         }
 
-
         [HttpDelete("files")]
-        public async Task<IActionResult> DeleteFileAsync([FromBody] DTOs.DeleteFileDTO requset)
+        public async Task<IActionResult> DeleteFileAsync([FromBody] DTOs.DeleteFileDTO request)
         {
-            this._logger.LogInformation(FilesLoggerMessages.DeleteFile, requset.FileName);
+            if (request == null)
+            {
+                return BadRequest(new
+                {
+                    success = false,
+                    message = FilesControllerMessages.Error.RequestNull
+                });
+            }
+
+            this._logger.LogInformation(FilesLoggerMessages.DeleteFile, request.SimId);
             try
             {
-                bool result = await _multimediaSimulatorService.DeleteFileAsync(requset.FileName);
+                bool result = await _multimediaSimulatorService.DeleteFileAsync(request.SimId);
                 return Ok(new
                 {
-                    success = result,   
-                    message = string.Format(FilesControllerMessages.Success.DeleteSuccessTemplate, requset.FileName)
+                    success = result,
+                    message = string.Format(FilesControllerMessages.Success.DeleteSuccessTemplate, request.SimId)
+                });
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(new
+                {
+                    success = false,
+                    message = string.Format(FilesControllerMessages.Error.FileNotFoundTemplate, request.SimId)
                 });
             }
             catch (Exception ex)
@@ -67,7 +82,7 @@ namespace multimedia_simulator.Controllers
                 return BadRequest(new
                 {
                     success = false,
-                    message = string.Format(FilesControllerMessages.Error.FileDeleteFailedTemplate, requset.FileName, ex.Message)
+                    message = string.Format(FilesControllerMessages.Error.FileDeleteFailedTemplate, request.SimId, ex.Message)
                 });
             }
         }

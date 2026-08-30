@@ -18,6 +18,7 @@ namespace multimedia_simulator.Interfaces
         Task<T?> QuerySingleOrDefaultAsync<T>(string query, object? parameters = null);
 
         //--------------------functions for files-------------------
+        Task<string?> GetSourceFilePathByIdAsync(int id);
         Task<int> AddSourceFileAsync(string fileName, long fileSize);
         Task<bool> DeleteSourceFileAsync(string fileName);
         //---------------------functions for streams--------------------

@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace multimedia_simulator.DTOs
 {
     public class DeleteFileDTO
     {
-        [Required(ErrorMessage = "FileName is required.")]
-        public required string FileName { get; init; } //init -only property to make it immutable after initialization
+        [JsonPropertyName("simId")]
+        [Required(ErrorMessage = "SimId is required.")]
+        [Range(1, int.MaxValue, ErrorMessage = "SimId must be a valid positive integer.")]
+        public required int SimId { get; init; }
     }
 }

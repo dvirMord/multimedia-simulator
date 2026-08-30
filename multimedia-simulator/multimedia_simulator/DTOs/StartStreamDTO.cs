@@ -21,4 +21,20 @@ namespace multimedia_simulator.DTOs
 
         public StreamType Type { get; init; } = StreamType.Video;
     }
+
+    public class StartStreamByIdDTO
+    {
+        [Required(ErrorMessage = "SimId is required.")]
+        [Range(1, int.MaxValue, ErrorMessage = "SimId must be a valid positive integer.")]
+        public required int SimId { get; init; }
+
+    }
+
+    public class StopStreamByIdDTO
+    {
+        [Required(ErrorMessage = "SimId is required.")]
+        [Range(1, int.MaxValue, ErrorMessage = "SimId must be a valid positive integer.")]
+        public required int SimId { get; init; }
+
+    }
 }

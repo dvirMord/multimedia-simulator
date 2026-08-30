@@ -89,6 +89,13 @@ namespace multimedia_simulator.Services
             return newId;
         }
 
+        public async Task<string?> GetSourceFilePathByIdAsync(int id)
+        {
+            return await this.QuerySingleOrDefaultAsync<string>(
+                SqlQueries.SourceFiles.GET_SOURCE_FILE_PATH_BY_ID,
+                new { Id = id });
+        }
+
         public async Task<bool> DeleteSourceFileAsync(string fileName)
         {
             string filePath = Path.Combine(this._storedFilesPath, fileName);

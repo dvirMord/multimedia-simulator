@@ -29,21 +29,20 @@ namespace multimedia_simulator.Services
             return newId;
         }
 
-        public async Task<bool> DeleteFileAsync(string fileName)
+        public async Task<bool> DeleteFileAsync(int simId)
         {
-            //check if stream is running and stop it before deleting the file
-            if (this._ffmpegService.IsStreamRunning(fileName))
+            string? filePath = await this._DBService.GetSourceFilePathByIdAsync(simId);
+            if (string.IsNullOrEmpty(filePath))
             {
-                await this._ffmpegService.StopStreamAsync(fileName);
+                throw new KeyNotFoundException(string.Format(FilesControllerMessages.Error.FileNotFoundTemplate, simId));
             }
 
-            this._storageManagementService.DeleteFile(fileName);
-            bool isDeleted = await this._DBService.DeleteSourceFileAsync(fileName);
-            if (!isDeleted)
+            if (File.Exists(filePath))
             {
-                throw new InvalidOperationException(
-                    string.Format(DBManagerExceptions.DBFalidToDelete, fileName));
+                File.Delete(filePath);
             }
+
+            await this._DBService.DeleteSourceFileAsync(Path.GetFileName(filePath));
             return true;
         }
     }
