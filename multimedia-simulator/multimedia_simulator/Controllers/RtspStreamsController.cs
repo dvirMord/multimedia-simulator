@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using multimedia_simulator.constans;
+using multimedia_simulator.DTOs;
 using multimedia_simulator.Interfaces;
 
 namespace multimedia_simulator.Controllers
@@ -19,15 +20,16 @@ namespace multimedia_simulator.Controllers
 
         //-------------------- APIs for streams-----------------
         [HttpPost("stream/start")]
-        public async Task<IActionResult> StartStreamAsync([FromBody] DTOs.StartStreamDTO request)
+        public async Task<IActionResult> StartStreamAsync([FromBody] DTOs.StartStreamByIdDTO request)
         {
+            DTOs.StartStreamDTO startStreamDTO = await this.ConvertStartStreamForId(request);
             try
             {
-                await this._rtspStreamsService.StartRtspStreamAsync(request);
+                await this._rtspStreamsService.StartRtspStreamAsync(startStreamDTO);
                 return Ok(new
                 {
                     success = true,
-                    message = string.Format(StreamsControllerMessages.Success.StartStreamTriggeredTemplate, request.FileName)
+                    message = string.Format(StreamsControllerMessages.Success.StartStreamTriggeredTemplate, startStreamDTO.FileName)
                 });
             }
             catch (Exception ex)
@@ -35,7 +37,7 @@ namespace multimedia_simulator.Controllers
                 return BadRequest(new
                 {
                     success = false,
-                    message = string.Format(StreamsControllerMessages.Error.StartStreamFailedTemplate, request.FileName, ex.Message)
+                    message = string.Format(StreamsControllerMessages.Error.StartStreamFailedTemplate, startStreamDTO.FileName, ex.Message)
                 });
             }
         }
@@ -43,15 +45,16 @@ namespace multimedia_simulator.Controllers
 
 
         [HttpPost("stream/stop")]
-        public async Task<IActionResult> StopRtspStreamAsync([FromBody] DTOs.StopStreamDTO request)
+        public async Task<IActionResult> StopRtspStreamAsync([FromBody] DTOs.StopStreamByIdDTO request)
         {
+            DTOs.StopStreamDTO dtoForService = await this.ConvertStopStreamForId(request);
             try
             {
-                await this._rtspStreamsService.StopRtspStreamAsync(request.StreamName);
+                await this._rtspStreamsService.StopRtspStreamAsync(dtoForService.StreamName);
                 return Ok(new
                 {
                     success = true,
-                    message = string.Format(StreamsControllerMessages.Success.StopStreamTriggeredTemplate, request.StreamName)
+                    message = string.Format(StreamsControllerMessages.Success.StopStreamTriggeredTemplate, dtoForService.StreamName)
                 });
             }
             catch (Exception ex)
@@ -59,9 +62,20 @@ namespace multimedia_simulator.Controllers
                 return BadRequest(new
                 {
                     success = false,
-                    message = string.Format(StreamsControllerMessages.Error.StopStreamFailedTemplate, request.StreamName, ex.Message)
+                    message = string.Format(StreamsControllerMessages.Error.StopStreamFailedTemplate, dtoForService.StreamName, ex.Message)
                 });
             }
+        }
+
+        private async Task<DTOs.StopStreamDTO> ConvertStopStreamForId(DTOs.StopStreamByIdDTO requset)
+        {
+            return await this._rtspStreamsService.MakeStopStreamForId(requset);
+        }
+
+        private async Task<DTOs.StartStreamDTO> ConvertStartStreamForId(DTOs.StartStreamByIdDTO requset)
+        {
+            return await this._rtspStreamsService.MakeStartStreamForId(requset);
+           
         }
     }
 }

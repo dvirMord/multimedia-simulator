@@ -1,8 +1,8 @@
 ﻿namespace multimedia_simulator.constans
 {
-    public class FilesLoggerMessages
+    public static class FilesLoggerMessages
     {
-        public const string ReciveFilelog = "Receiving file upload request for file: '{0}'";
-        public const string DeleteFile = "Receving delete file requset for file: '{0}'";
+        public const string ReciveFilelog = "Received request to upload file: {FileName}";
+        public const string DeleteFile = "Received request to delete file with SimId: {SimId}";
     }
 }

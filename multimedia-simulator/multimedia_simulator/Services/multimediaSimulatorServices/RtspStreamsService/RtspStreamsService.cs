@@ -39,5 +39,40 @@ namespace multimedia_simulator.Services
             await this._ffmpegService.StopStreamAsync(streamName);
 
         }
+
+        public async Task<DTOs.StopStreamDTO> MakeStopStreamForId(DTOs.StopStreamByIdDTO request)
+        {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            string? filePath = await this._dbManager.GetSourceFilePathByIdAsync(request.SimId);
+
+            if (string.IsNullOrEmpty(filePath))
+            {
+                throw new KeyNotFoundException(string.Format(FFmpegManagerMessages.Error.StreamNotFoundInDb, filePath));
+            }
+            return new DTOs.StopStreamDTO
+            {
+                StreamName = Path.GetFileName(filePath) 
+            };
+        }
+
+        public async Task<DTOs.StartStreamDTO> MakeStartStreamForId(DTOs.StartStreamByIdDTO request)
+        {
+            if(request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            string? filePath = await this._dbManager.GetSourceFilePathByIdAsync(request.SimId);
+
+            if (string.IsNullOrEmpty(filePath))
+            {
+                throw new KeyNotFoundException(string.Format(FFmpegManagerMessages.Error.StreamNotFoundInDb, filePath));
+            }
+            return new DTOs.StartStreamDTO
+            {
+                FileName = Path.GetFileName(filePath),
+                SourceFileId = request.SimId
+            };
+        }
     }
 }
