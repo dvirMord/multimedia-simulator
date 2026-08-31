@@ -1,14 +1,15 @@
 ﻿namespace video_simulator.constans
 {
-    public  class SqlQueries
+    public class SqlQueries
     {
         // -------------------- SourceFiles Queries --------------------
-        public  class SourceFiles
+        public class SourceFiles
         {
             public const string GET_SOURCE_FILE_PATH_BY_ID = @"
                 SELECT Path 
                 FROM SourceFiles 
                 WHERE Id = @Id;";
+
             public const string Insert = @"
                 INSERT INTO SourceFiles (Path, Size) 
                 VALUES (@Path, @Size);
@@ -37,9 +38,28 @@
         public class Channels
         {
             public const string Insert = @"
-                INSERT INTO Channels (SourceFilesId, StreamEndpoint, Type, FFmpegProcessId) 
-                VALUES (@SourceFilesId, @StreamEndpoint, @Type, @FFmpegProcessId);
+                INSERT INTO Channels (SourceFilesId, StreamEndpoint, Type, FFmpegProcessId, IsActive) 
+                VALUES (@SourceFilesId, @StreamEndpoint, @Type, @FFmpegProcessId, 1);
                 SELECT last_insert_rowid();";
+
+            public const string GetByEndpoint = @"
+                SELECT * FROM Channels 
+                WHERE StreamEndpoint = @StreamEndpoint;";
+
+            public const string GetBySourceFileAndType = @"
+                SELECT * FROM Channels 
+                WHERE SourceFilesId = @SourceFilesId AND Type = @Type;";
+
+            public const string GetAllActive = @"
+                SELECT * FROM Channels 
+                WHERE IsActive = 1;";
+
+            public const string UpdateActiveStatus = @"
+                UPDATE Channels 
+                SET IsActive = @IsActive, 
+                    FFmpegProcessId = @FFmpegProcessId 
+                WHERE StreamEndpoint = @StreamEndpoint;";
+
             public const string UpdateProcessId = "UPDATE Channels SET FFmpegProcessId = @ProcessId WHERE Id = @Id;";
             public const string DeleteById = "DELETE FROM Channels WHERE Id = @Id;";
             public const string DeleteByEndpoint = "DELETE FROM Channels WHERE StreamEndpoint = @StreamEndpoint;";

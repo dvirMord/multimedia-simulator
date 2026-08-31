@@ -11,7 +11,7 @@ namespace multimedia_simulator.Controllers
     [Route("api/v{version:apiVersion}/ms")]
     public class RtspStreamsController: ControllerBase
     {
-        private readonly IRtspStreamsService _rtspStreamsService;
+        private readonly IRtspStreamsService _rtspStreamsService;   
 
         public RtspStreamsController(IRtspStreamsService rtspStreamsService)
         {
