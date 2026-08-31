@@ -16,7 +16,7 @@ namespace multimedia_simulator.Controllers
         public RtspStreamsController(IRtspStreamsService rtspStreamsService)
         {
             this._rtspStreamsService = rtspStreamsService;
-        }   
+        }
 
         //-------------------- APIs for streams-----------------
         [HttpPost("stream/start")]
@@ -25,19 +25,21 @@ namespace multimedia_simulator.Controllers
             DTOs.StartStreamDTO startStreamDTO = await this.ConvertStartStreamForId(request);
             try
             {
-                await this._rtspStreamsService.StartRtspStreamAsync(startStreamDTO);
-                return Ok(new
+                string streamEndPoint = await this._rtspStreamsService.StartRtspStreamAsync(startStreamDTO);
+                return Ok(new DTOs.StreamResponseDTO
                 {
-                    success = true,
-                    message = string.Format(StreamsControllerMessages.Success.StartStreamTriggeredTemplate, startStreamDTO.FileName)
+                    Success = true,
+                    Message = string.Format(StreamsControllerMessages.Success.StartStreamTriggeredTemplate, startStreamDTO.FileName),
+                    RtspStream = streamEndPoint
                 });
             }
             catch (Exception ex)
             {
-                return BadRequest(new
+                return BadRequest(new DTOs.StreamResponseDTO
                 {
-                    success = false,
-                    message = string.Format(StreamsControllerMessages.Error.StartStreamFailedTemplate, startStreamDTO.FileName, ex.Message)
+                    Success = false,
+                    Message = string.Format(StreamsControllerMessages.Error.StartStreamFailedTemplate, startStreamDTO.FileName, ex.Message),
+                    RtspStream = string.Empty
                 });
             }
         }

@@ -17,7 +17,7 @@ namespace multimedia_simulator.Services
         }
 
         //streams
-        public async Task StartRtspStreamAsync(StartStreamDTO request)
+        public async Task<string> StartRtspStreamAsync(StartStreamDTO request)
         {
             int pid = await this._ffmpegService.StartStreamAsync(request.FileName);
 
@@ -31,6 +31,7 @@ namespace multimedia_simulator.Services
                 throw new InvalidOperationException(
                     string.Format(DBManagerExceptions.DBFalidToInsertChannel, request.FileName));
             }
+            return streamEndPoint;
         }
         public async Task StopRtspStreamAsync(string streamName)
         {

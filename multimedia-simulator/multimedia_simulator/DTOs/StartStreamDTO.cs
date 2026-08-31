@@ -10,6 +10,18 @@ namespace multimedia_simulator.DTOs
         Audio
     }
 
+    public class StreamResponseDTO
+    {
+        [JsonPropertyName("success")]
+        public bool Success { get; set; }
+
+        [JsonPropertyName("message")]
+        public string Message { get; set; } = string.Empty;
+
+        [JsonPropertyName("rtspStream")]
+        public string RtspStream { get; set; } = string.Empty;
+    }
+
     public class StartStreamDTO
     {
         [Required(ErrorMessage = "FileName is required.")]
