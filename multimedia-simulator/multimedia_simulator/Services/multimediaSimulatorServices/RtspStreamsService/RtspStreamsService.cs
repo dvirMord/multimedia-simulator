@@ -49,7 +49,7 @@ namespace multimedia_simulator.Services
 
             if (string.IsNullOrEmpty(filePath))
             {
-                throw new KeyNotFoundException($"Source file with SimId {request.SimId} was not found.");
+                throw new KeyNotFoundException(string.Format(FFmpegManagerMessages.Error.StreamNotFoundInDb, filePath));
             }
             return new DTOs.StopStreamDTO
             {
@@ -66,7 +66,7 @@ namespace multimedia_simulator.Services
 
             if (string.IsNullOrEmpty(filePath))
             {
-                throw new KeyNotFoundException($"Source file with SimId {request.SimId} was not found.");
+                throw new KeyNotFoundException(string.Format(FFmpegManagerMessages.Error.StreamNotFoundInDb, filePath));
             }
             return new DTOs.StartStreamDTO
             {
