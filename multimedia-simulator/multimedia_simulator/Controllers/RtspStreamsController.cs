@@ -11,7 +11,7 @@ namespace multimedia_simulator.Controllers
     [Route("api/v{version:apiVersion}/ms")]
     public class RtspStreamsController: ControllerBase
     {
-        private readonly IRtspStreamsService _rtspStreamsService;
+        private readonly IRtspStreamsService _rtspStreamsService;   
 
         public RtspStreamsController(IRtspStreamsService rtspStreamsService)
         {
@@ -67,6 +67,17 @@ namespace multimedia_simulator.Controllers
                     message = string.Format(StreamsControllerMessages.Error.StopStreamFailedTemplate, dtoForService.StreamName, ex.Message)
                 });
             }
+        }
+
+        [HttpGet("Active")]
+        public async Task<IActionResult> GetActiveStreams()
+        {
+            var activeStreams = await _rtspStreamsService.GetActiveStreamsAsync();
+            return Ok(new
+            {
+                success = true,
+                streams = activeStreams
+            });
         }
 
         private async Task<DTOs.StopStreamDTO> ConvertStopStreamForId(DTOs.StopStreamByIdDTO requset)
