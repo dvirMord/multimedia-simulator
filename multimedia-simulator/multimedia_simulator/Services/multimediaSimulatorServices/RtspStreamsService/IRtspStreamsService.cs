@@ -6,7 +6,7 @@
         Task<DTOs.StartStreamDTO> MakeStartStreamForId(DTOs.StartStreamByIdDTO request);
 
         Task<DTOs.StopStreamDTO> MakeStopStreamForId(DTOs.StopStreamByIdDTO request);
-        Task StartRtspStreamAsync(DTOs.StartStreamDTO request);
+        Task<string> StartRtspStreamAsync(DTOs.StartStreamDTO request);
         Task StopRtspStreamAsync(string streamName);
     }
 }
