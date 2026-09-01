@@ -1,6 +1,6 @@
 ﻿using multimedia_simulator.DTOs;
 using multimedia_simulator.Interfaces;
-using multimedia_simulator.constans;
+using multimedia_simulator.constants;
 
 namespace multimedia_simulator.Services
 {

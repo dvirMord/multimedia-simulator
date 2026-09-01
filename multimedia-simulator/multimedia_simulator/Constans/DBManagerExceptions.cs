@@ -1,4 +1,4 @@
-﻿namespace multimedia_simulator.constans
+﻿namespace multimedia_simulator.constants
 {
     public class DBManagerExceptions
     {

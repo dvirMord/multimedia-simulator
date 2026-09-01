@@ -1,4 +1,6 @@
-﻿namespace multimedia_simulator.Interfaces
+﻿using multimedia_simulator.DTOs;
+
+namespace multimedia_simulator.Interfaces
 {
     public interface IRtspStreamsService
     {
@@ -8,6 +10,8 @@
         Task<DTOs.StopStreamDTO> MakeStopStreamForId(DTOs.StopStreamByIdDTO request);
         Task<string> StartRtspStreamAsync(DTOs.StartStreamDTO request);
         Task StopRtspStreamAsync(string streamName);
+
+        Task<IEnumerable<ChannelDTO>> GetActiveStreamsAsync();
     }
 }
 

@@ -1,4 +1,4 @@
-﻿using multimedia_simulator.constans;
+﻿using multimedia_simulator.constants;
 using multimedia_simulator.DTOs;
 using multimedia_simulator.Validators;
 using multimedia_simulator.Interfaces;

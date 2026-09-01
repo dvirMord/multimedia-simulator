@@ -1,11 +1,14 @@
 ﻿using multimedia_simulator.Interfaces;
 using multimedia_simulator.DTOs;
-using Microsoft.VisualBasic;
-using multimedia_simulator.constans;
+using multimedia_simulator.constants;
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace multimedia_simulator.Services
 {
-    public class RtspStreamsService: IRtspStreamsService
+    public class RtspStreamsService : IRtspStreamsService
     {
         private readonly IFFmpegManager _ffmpegService;
         private readonly IDBManager _dbManager;
@@ -16,29 +19,62 @@ namespace multimedia_simulator.Services
             this._ffmpegService = ffmpegService;
         }
 
-        //streams
         public async Task<string> StartRtspStreamAsync(StartStreamDTO request)
         {
-            int pid = await this._ffmpegService.StartStreamAsync(request.FileName);
+            string streamEndPoint = constants.Constants.RTSP_STREAM_URL + request.FileName;
 
-            //add channel to db
-            string streamEndPoint = constans.Constants.RTSP_STREAM_URL + request.FileName;
+            var existingChannel = await this._dbManager.GetChannelByEndpointAsync<ChannelDTO>(streamEndPoint);
+
+            // if the channel already exists, check if it's active. If it is, throw an exception. If not, start the stream and update the channel's status to active.
+            if (existingChannel != null)
+            {
+                if (existingChannel.IsActive)
+                {
+                    throw new InvalidOperationException(string.Format(FFmpegManagerMessages.Warning.StreamAlreadyActiveTemplate, request.FileName));
+                }
+                int pid = await this._ffmpegService.StartStreamAsync(request.FileName);
+                await this._dbManager.UpdateChannelActiveStatusAsync(streamEndPoint, isActive: true, processId: pid);
+                return streamEndPoint;
+            }
+
+            int newPid = await this._ffmpegService.StartStreamAsync(request.FileName);
 
             int newId = await this._dbManager.AddChannelAsync(
-                request.SourceFileId, streamEndPoint, request.Type.ToString(), pid);
-            if (newId == constans.Constants.BadInsertResponseCode)
+                request.SourceFileId, streamEndPoint, request.Type.ToString(), newPid);
+
+            if (newId == constants.Constants.BadInsertResponseCode)
             {
+                await this._ffmpegService.StopStreamAsync(request.FileName);
                 throw new InvalidOperationException(
                     string.Format(DBManagerExceptions.DBFalidToInsertChannel, request.FileName));
             }
+
             return streamEndPoint;
         }
+
         public async Task StopRtspStreamAsync(string streamName)
         {
-            string streamEndPoint = constans.Constants.RTSP_STREAM_URL + streamName;
-            await this._dbManager.DeleteChannelAsync(streamEndPoint);
+            string streamEndPoint = constants.Constants.RTSP_STREAM_URL + streamName;
+
+            var existingChannel = await this._dbManager.GetChannelByEndpointAsync<ChannelDTO>(streamEndPoint);
+
+            if (existingChannel == null)
+            {
+                throw new InvalidOperationException(string.Format(FFmpegManagerMessages.Error.StreamNotFoundInDb, streamName));
+            }
+            if(!existingChannel.IsActive)        
+            {
+                throw new InvalidOperationException(string.Format(FFmpegManagerMessages.Warning.StreamNotActiveTemplate, streamName));
+            }
+
             await this._ffmpegService.StopStreamAsync(streamName);
 
+            await this._dbManager.UpdateChannelActiveStatusAsync(streamEndPoint, isActive: false, processId: null);
+        }
+
+        public async Task<IEnumerable<ChannelDTO>> GetActiveStreamsAsync()
+        {
+            return await this._dbManager.GetAllActiveChannelsAsync<ChannelDTO>();
         }
 
         public async Task<DTOs.StopStreamDTO> MakeStopStreamForId(DTOs.StopStreamByIdDTO request)
@@ -54,13 +90,13 @@ namespace multimedia_simulator.Services
             }
             return new DTOs.StopStreamDTO
             {
-                StreamName = Path.GetFileName(filePath) 
+                StreamName = Path.GetFileName(filePath)
             };
         }
 
         public async Task<DTOs.StartStreamDTO> MakeStartStreamForId(DTOs.StartStreamByIdDTO request)
         {
-            if(request == null)
+            if (request == null)
                 throw new ArgumentNullException(nameof(request));
 
             string? filePath = await this._dbManager.GetSourceFilePathByIdAsync(request.SimId);

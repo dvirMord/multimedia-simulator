@@ -1,6 +1,6 @@
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
-using multimedia_simulator.constans;
+using multimedia_simulator.constants;
 using multimedia_simulator.Interfaces;
 using multimedia_simulator.MediaMTX;
 using multimedia_simulator.Services;

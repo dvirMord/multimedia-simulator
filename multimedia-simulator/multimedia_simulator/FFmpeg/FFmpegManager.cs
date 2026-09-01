@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Diagnostics;
 using multimedia_simulator.Interfaces;
-using multimedia_simulator.constans;
+using multimedia_simulator.constants;
 using multimedia_simulator.Validators;
 
 namespace multimedia_simulator.Services

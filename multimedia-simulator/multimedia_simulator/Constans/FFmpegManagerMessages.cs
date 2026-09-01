@@ -1,4 +1,4 @@
-﻿namespace multimedia_simulator.constans
+﻿namespace multimedia_simulator.constants
 {
     public static class FFmpegManagerMessages
     {
@@ -18,7 +18,8 @@
         public static class Warning
         {
             public const string FFmpegStreamCloseTimeoutTemplate = "Process for stream {0} took too long to exit.";
-
+            public const string StreamAlreadyActiveTemplate = "Stream '{0}' is already active and streaming.";
+            public const string StreamNotActiveTemplate = "Stream '{0}' is not currently active.";
 
         }
     }
