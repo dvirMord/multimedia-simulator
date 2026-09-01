@@ -1,4 +1,4 @@
-﻿namespace video_simulator.constans
+﻿namespace video_simulator.constants
 {
     public class SqlQueries
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Data.Sqlite;
 using Dapper;
 using multimedia_simulator.Interfaces;
-using multimedia_simulator.constans;
-using video_simulator.constans;
+using multimedia_simulator.constants;
+using video_simulator.constants;
 
 namespace multimedia_simulator.Services
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using multimedia_simulator.constans;
+using multimedia_simulator.constants;
 using multimedia_simulator.Interfaces;
 using Asp.Versioning;
 

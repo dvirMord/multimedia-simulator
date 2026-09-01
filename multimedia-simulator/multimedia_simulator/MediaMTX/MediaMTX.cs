@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using multimedia_simulator.constans;
+using multimedia_simulator.constants;
 
 namespace multimedia_simulator.MediaMTX
 {

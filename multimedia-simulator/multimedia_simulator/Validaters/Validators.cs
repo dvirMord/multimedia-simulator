@@ -1,4 +1,4 @@
-﻿using multimedia_simulator.constans;
+﻿using multimedia_simulator.constants;
 
 namespace multimedia_simulator.Validators
 {

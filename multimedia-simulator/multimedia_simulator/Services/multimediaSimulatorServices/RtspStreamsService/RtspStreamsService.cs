@@ -1,6 +1,6 @@
 ﻿using multimedia_simulator.Interfaces;
 using multimedia_simulator.DTOs;
-using multimedia_simulator.constans;
+using multimedia_simulator.constants;
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -21,17 +21,17 @@ namespace multimedia_simulator.Services
 
         public async Task<string> StartRtspStreamAsync(StartStreamDTO request)
         {
-            string streamEndPoint = constans.Constants.RTSP_STREAM_URL + request.FileName;
+            string streamEndPoint = constants.Constants.RTSP_STREAM_URL + request.FileName;
 
             var existingChannel = await this._dbManager.GetChannelByEndpointAsync<ChannelDTO>(streamEndPoint);
 
+            // if the channel already exists, check if it's active. If it is, throw an exception. If not, start the stream and update the channel's status to active.
             if (existingChannel != null)
             {
                 if (existingChannel.IsActive)
                 {
-                    throw new InvalidOperationException($"Stream '{request.FileName}' is already active and streaming.");
+                    throw new InvalidOperationException(string.Format(FFmpegManagerMessages.Warning.StreamAlreadyActiveTemplate, request.FileName));
                 }
-
                 int pid = await this._ffmpegService.StartStreamAsync(request.FileName);
                 await this._dbManager.UpdateChannelActiveStatusAsync(streamEndPoint, isActive: true, processId: pid);
                 return streamEndPoint;
@@ -42,7 +42,7 @@ namespace multimedia_simulator.Services
             int newId = await this._dbManager.AddChannelAsync(
                 request.SourceFileId, streamEndPoint, request.Type.ToString(), newPid);
 
-            if (newId == constans.Constants.BadInsertResponseCode)
+            if (newId == constants.Constants.BadInsertResponseCode)
             {
                 await this._ffmpegService.StopStreamAsync(request.FileName);
                 throw new InvalidOperationException(
@@ -54,13 +54,17 @@ namespace multimedia_simulator.Services
 
         public async Task StopRtspStreamAsync(string streamName)
         {
-            string streamEndPoint = constans.Constants.RTSP_STREAM_URL + streamName;
+            string streamEndPoint = constants.Constants.RTSP_STREAM_URL + streamName;
 
             var existingChannel = await this._dbManager.GetChannelByEndpointAsync<ChannelDTO>(streamEndPoint);
 
-            if (existingChannel == null || !existingChannel.IsActive)
+            if (existingChannel == null)
             {
-                throw new InvalidOperationException($"Stream '{streamName}' is not currently active.");
+                throw new InvalidOperationException(string.Format(FFmpegManagerMessages.Error.StreamNotFoundInDb, streamName));
+            }
+            if(!existingChannel.IsActive)        
+            {
+                throw new InvalidOperationException(string.Format(FFmpegManagerMessages.Warning.StreamNotActiveTemplate, streamName));
             }
 
             await this._ffmpegService.StopStreamAsync(streamName);
