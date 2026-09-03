@@ -22,9 +22,16 @@ namespace multimedia_simulator.Services
 
         public void CreateConnection(string path)
         {
+            var directory = Path.GetDirectoryName(path);
+            if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
             SqliteConnectionStringBuilder builder = new SqliteConnectionStringBuilder
             {
                 DataSource = path,
+                Mode = SqliteOpenMode.ReadWriteCreate,
                 ForeignKeys = true
             };
             this._sqliteConnection = new SqliteConnection(builder.ConnectionString);

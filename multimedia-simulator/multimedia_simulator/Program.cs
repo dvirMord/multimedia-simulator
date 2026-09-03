@@ -4,8 +4,18 @@ using multimedia_simulator.constants;
 using multimedia_simulator.Interfaces;
 using multimedia_simulator.MediaMTX;
 using multimedia_simulator.Services;
+using static multimedia_simulator.constants.Constants;
 
-DotNetEnv.Env.Load();
+
+if (File.Exists(EnvConstants.DOCKER_ENV_FILE_NAME))
+{
+    DotNetEnv.Env.Load(EnvConstants.DOCKER_ENV_FILE_NAME);
+}
+else if (File.Exists(EnvConstants.DEFAULT_ENV_FILE_NAME))
+{
+    DotNetEnv.Env.Load();
+}
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,24 +68,21 @@ logger.LogInformation("Database initialized successfully.");
 //----------------- Swagger UI Setup ------------------------------------------
 if (app.Environment.IsDevelopment())
 {
-    // חושף את ה-JSON בנתיב /openapi/{documentName}.json
+    
     app.MapOpenApi();
 
     var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
     app.UseSwaggerUI(options =>
     {
-        // ממפה את כל הגרסאות המוגדרות ב-API Versioning ישירות ל-Dropdown של Swagger UI
         foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
         {
             options.SwaggerEndpoint(
-                $"/openapi/{description.GroupName}.json",
-                $"API {description.GroupName.ToUpperInvariant()}"
+                string.Format(SwaggerConstants.EndpointUrlTemplate, description.GroupName),
+                string.Format(SwaggerConstants.EndpointNameTemplate, description.GroupName.ToUpperInvariant())
             );
         }
-
-        // מגדיר את נתיב הגישה ל-Swagger
-        options.RoutePrefix = "swagger";
+        options.RoutePrefix = SwaggerConstants.RoutePrefix;
     });
 }
 
@@ -92,6 +99,3 @@ lifetime.ApplicationStopping.Register(() =>
 });
 
 app.Run();
-
-Console.Write("Press any key to exit...");
-Console.Read();

@@ -14,12 +14,17 @@
         public const int MEDIAMTX_STARTUP_TIMEOUT_SECONDS = 5;
         public const int MEDIAMTX_SHUTDOWN_TIMEOUT_MILLISECONDS = 3000;
 
-
         // ffmpeg process
         public const int FFMPEG_STARTUP_CHECK_MILLISECONDS = 500;
         public const int WAIT_FOR_FFMPEG_STREAM_TO_CLOSE = 5;
 
         //sql
         public const int BadInsertResponseCode = 0;
+        public static class SwaggerConstants
+        {
+            public const string RoutePrefix = "swagger";
+            public const string EndpointUrlTemplate = "/openapi/{0}.json";
+            public const string EndpointNameTemplate = "API {0}";
+        }
     }
 }
